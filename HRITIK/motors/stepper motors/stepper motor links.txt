@@ -1,0 +1,8 @@
+https://www.jvl.dk/326/high-torque-stepper-motors
+
+https://www.orientalmotor.com/stepper-motors/technology/speed-torque-curves-for-stepper-motors.html
+
+https://reprap.org/wiki/Stepper_motor#:~:text=Stepper%20motors%20have%20a%20step,step%20angle%20of%201.8%20degrees.
+
+---Position Feedback for Stepper Motor----------
+https://arduino.stackexchange.com/questions/70406/position-feedback-for-stepper-motor   

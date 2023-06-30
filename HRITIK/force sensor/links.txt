@@ -1,0 +1,10 @@
+https://www.sensingthecity.com/force-sensor-peak-detection/
+https://makersportal.com/blog/2020/5/24/force-sensitive-resistors-fsrs-arduino
+
+********************Arduino serial monitor data to excel**************************
+
+https://www.youtube.com/watch?v=rT1CIa-ZiNo
+https://circuitjournal.com/arduino-serial-to-spreadsheet
+
+*****************End*************************************************************
+https://www.edaboard.com/threads/how-to-convert-adc-value-to-weight.317018/  -- weight

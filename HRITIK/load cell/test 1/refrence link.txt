@@ -1,0 +1,8 @@
+***youtube link*****
+https://www.youtube.com/watch?v=sxzoAGf1kOo
+
+******website link***********
+https://circuitjournal.com/four-wire-load-cell-with-HX711
+
+***********github link**********
+https://github.com/olkal/HX711_ADC

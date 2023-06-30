@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr -->
+<html lang="en-US" prefix="og: http://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 9999;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/application-8331b6fec250cd79568d21672472f4c10751a48230e6cffb23b6558d04c6b3a5.css" data-turbo-track="reload" media="screen">
+
+
+
+<script type="text/javascript" async="" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/ec.js.download"></script><script type="text/javascript" async="" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/js"></script><script type="text/javascript" async="" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/analytics.js.download"></script><script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/js(1)"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://learn.adafruit.com/force-sensitive-resistor-fsr/testing-an-fsr",
+        "name": "Force Sensitive Resistor (FSR)",
+        "description": "FSRs are sensors that allow you to detect physical pressure, squeezing and weight. They are simple to use and low cost.  This guide will show you how to wire an FSR, connect it to your Arduino, and give you some project ideas.",
+        "publisher": "Adafruit",
+        "datePublished": "2012-07-29T11:58:38-04:00",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://learn.adafruit.com/search?q={search_term}",
+          "query-input": "required name=search_term"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "lady ada"
+        }
+      }
+    </script>
+<!--[if lte IE 9]>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <![endif]-->
+<script>
+    window.rails_env = 'production';
+  </script>
+<script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/runtime-9300f709db58534c4f65.js.download" data-turbo-track="reload" defer="defer"></script>
+<script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/409-be13623cac1d8bb2c933.js.download" data-turbo-track="reload" defer="defer"></script>
+<script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/301-19f58b21f585c81ea7b7.js.download" data-turbo-track="reload" defer="defer"></script>
+<script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/411-059af0c4816b6a29790b.js.download" data-turbo-track="reload" defer="defer"></script>
+<script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/730-97e90166259bbc77cfa2.js.download" data-turbo-track="reload" defer="defer"></script>
+<script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/940-bc80e9d24619fbf2acba.js.download" data-turbo-track="reload" defer="defer"></script>
+<script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/712-7ec91a3a2ffbb7b0e4f2.js.download" data-turbo-track="reload" defer="defer"></script>
+<script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/431-a92e6645cdab793c29ab.js.download" data-turbo-track="reload" defer="defer"></script>
+<script src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/application-b752bcee5cc2a61983b2.js.download" data-turbo-track="reload" defer="defer"></script>
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "url": "https://learn.adafruit.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://learn.adafruit.com/search?q={search_term}",
+        "query-input": "required name=search_term"
+      }
+    }
+  </script>
+<style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://learn.adafruit.com/force-sensitive-resistor-fsr/connecting-to-an-fsr",
+        "name": "Force Sensitive Resistor (FSR)",
+        "description": "FSRs are sensors that allow you to detect physical pressure, squeezing and weight. They are simple to use and low cost.  This guide will show you how to wire an FSR, connect it to your Arduino, and give you some project ideas.",
+        "publisher": "Adafruit",
+        "datePublished": "2012-07-29T11:58:38-04:00",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://learn.adafruit.com/search?q={search_term}",
+          "query-input": "required name=search_term"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "lady ada"
+        }
+      }
+    </script><script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr",
+        "name": "Force Sensitive Resistor (FSR)",
+        "description": "FSRs are sensors that allow you to detect physical pressure, squeezing and weight. They are simple to use and low cost.  This guide will show you how to wire an FSR, connect it to your Arduino, and give you some project ideas.",
+        "publisher": "Adafruit",
+        "datePublished": "2012-07-29T11:58:38-04:00",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://learn.adafruit.com/search?q={search_term}",
+          "query-input": "required name=search_term"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "lady ada"
+        }
+      }
+    </script><script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://learn.adafruit.com/force-sensitive-resistor-fsr/overview",
+        "name": "Force Sensitive Resistor (FSR)",
+        "description": "FSRs are sensors that allow you to detect physical pressure, squeezing and weight. They are simple to use and low cost.  This guide will show you how to wire an FSR, connect it to your Arduino, and give you some project ideas.",
+        "publisher": "Adafruit",
+        "datePublished": "2012-07-29T11:58:38-04:00",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://learn.adafruit.com/search?q={search_term}",
+          "query-input": "required name=search_term"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "lady ada"
+        }
+      }
+    </script><link rel="mask-icon" href="https://learn.adafruit.com/assets/adafruit_favicon-d675616eb86845a7dba9e0f82b02bab9dbc195053d6f2adc8741e42ca351d2fe.svg" color="#000000"><link rel="icon" type="image/x-icon" href="https://learn.adafruit.com/assets/favicon-11d9964de07961a3a796b93805a7a240050c6b9f27a213b4002f3ed1efbe2a44.ico"><title>Using an FSR | Force Sensitive Resistor (FSR) | Adafruit Learning System</title><meta name="csrf-param" content="authenticity_token"><meta name="csrf-token" content="1fFlBCPUyQSg76rIfzsIicYH9rLAVMaVNlPXSlMpBQHIGNZowDC8Y4EuXqZfDAvvKtB_8eqUYKtLk9nA6uOnFQ"><link rel="alternate" type="application/atom+xml" title="ATOM" href="https://learn.adafruit.com/feed"><link rel="alternate" type="application/rss+xml" title="RSS" href="https://learn.adafruit.com/feed.rss"><link rel="preload" href="https://cdn-shop.adafruit.com/fonts/proximanova/proximanova-light-webfont.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="https://cdn-shop.adafruit.com/fonts/proximanova/proximanova-regular-webfont.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="https://cdn-shop.adafruit.com/fonts/proximanova/proximanova-semibold-webfont.woff2" as="font" type="font/woff2" crossorigin=""><meta name="viewport" content="initial-scale=1, viewport-fit=cover"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="guide-title" content="Force Sensitive Resistor (FSR)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@adafruit"><meta name="twitter:title" content="Force Sensitive Resistor (FSR)"><meta name="twitter:description" content="Thin sensor that detects physical pressure."><meta name="twitter:image:src" content="https://cdn-learn.adafruit.com/guides/images/000/000/025/medium800/166.jpg"><meta name="twitter:domain" content="https://learn.adafruit.com"><link rel="canonical" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr"><meta property="og:title" content="Force Sensitive Resistor (FSR)"><meta property="og:description" content="FSRs are sensors that allow you to detect physical pressure, squeezing and weight. They are simple to use and low cost.  This guide will show you how to wire an FSR, connect it to your Arduino, and give you some project ideas."><meta property="og:type" content="website"><meta property="og:image" content="https://cdn-learn.adafruit.com/guides/images/000/000/025/medium800/166.jpg"><meta property="og:url" content="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr"><meta property="og:site_name" content="Adafruit Learning System"></head>
+<body class="application pages show production">
+
+<noscript><iframe src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/ns.html" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div id="outer-wrapper">
+<div id="inner-wrapper">
+<div id="messaging-wrapper" class="messages-container" data-load="https://www.adafruit.com/api/multi_message.php"></div>
+<a data-turbo="false" class="skip-to-main" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#main-content-container">Skip to main content</a>
+<header id="adafruit-header" aria-label="Adafruit header">
+<div id="small-header">
+<div class="first-row">
+<nav aria-label="Adafruit applications menu">
+<ul class="application-links">
+<li><a aria-label="Adafruit Shop" href="https://www.adafruit.com/">Shop</a></li>
+<li class="selected"><a aria-label="Adafruit Learning System" href="https://learn.adafruit.com/">Learn</a></li>
+<li><a aria-label="Adafruit Blog" href="https://blog.adafruit.com/">Blog</a></li>
+<li><a aria-label="Adafruit Forums and Support" href="https://forums.adafruit.com/">Forums</a></li>
+<li><a aria-label="Adafruit Youtube Videos" href="https://www.youtube.com/adafruit/live">LIVE!</a></li>
+<li><a aria-label="Adafruit product box subscription" href="https://www.adabox.com/">AdaBox</a></li>
+<li><a aria-label="Adafruit IO, the internet of things" href="https://io.adafruit.com/">IO</a></li>
+</ul>
+</nav>
+</div>
+<div class="second-row">
+<div class="row-content">
+<div id="mobile-header-logo">
+<a href="https://learn.adafruit.com/">
+<img id="small-logo" height="50" width="50" alt="Adafruit Logo" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/adafruit_logo_small.png">
+</a> </div>
+<button id="mobile-menu-button" class="c-hamburger c-hamburger--htx">
+<span>toggle menu</span>
+</button>
+<div id="mobile-search-wrapper">
+<form action="https://learn.adafruit.com/search" method="get">
+<label for="mobile-search" style="display:none;">Search</label>
+<input id="mobile-search" type="text" name="q" autocomplete="off" data-app-id="W9DMM4OTH0" data-app-key="e613bcda3453b9ef887e2724362f9e57" data-app-index="learn_guides_production" data-app-uri="https://learn.adafruit.com">
+<button type="submit" aria-label="Submit search"><i class="fa fa-search"></i></button>
+</form>
+ </div>
+<a id="mobile-header-cart" href="https://www.adafruit.com/shopping_cart">
+<span class="small-cart-count" aria-live="polite">0</span>
+<i class="fa fa-shopping-cart"></i>
+</a>
+</div>
+</div>
+<nav id="small-header-nav">
+<div id="small-menu">
+<ul>
+<li class="account-info">
+<a href="https://learn.adafruit.com/users/sign_in">Sign In</a> | <a href="https://accounts.adafruit.com/">Create Account</a>
+</li>
+<li><a href="https://learn.adafruit.com/guides/latest">New Guides</a></li>
+<li><a href="https://learn.adafruit.com/groups">Series</a></li>
+<li><a href="https://www.adafruit.com/wishlists">Wishlists</a></li>
+<li>
+<a class="random-guide-link" aria-label="View a Random Guide" href="https://learn.adafruit.com/guides/random">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+<g>
+<path fill="currentColor" d="M478.578,244.475H278.047c-3.81,0-7.42,0.78-10.829,1.961l56.305-56.305c6.306-6.306,9.759-14.706,9.759-23.64
+      c0-8.935-3.454-17.335-9.759-23.64L190.282,9.609c-12.589-12.611-34.692-12.611-47.281,0L9.759,142.85
+      C3.454,149.156,0,157.556,0,166.491s3.454,17.335,9.759,23.64l133.242,133.242c6.306,6.306,14.683,9.759,23.64,9.759
+      c8.957,0,17.335-3.454,23.64-9.759l56.305-56.305c-1.181,3.409-1.961,7.019-1.961,10.829v200.531
+      c0,18.427,14.995,33.422,33.422,33.422h200.531c18.427,0,33.422-14.995,33.422-33.422V277.897
+      C512,259.47,497.005,244.475,478.578,244.475z M182.394,271.368c-4.345,4.345-10.049,6.506-15.753,6.506
+      s-11.408-2.161-15.753-6.506c-8.712-8.69-8.712-22.816,0-31.506c8.69-8.712,22.816-8.712,31.506,0
+      C191.106,248.552,191.106,262.679,182.394,271.368z M182.394,182.244c-4.345,4.345-10.049,6.506-15.753,6.506
+      c-5.704,0-11.408-2.161-15.753-6.506c-8.712-8.69-8.712-22.816,0-31.506c8.69-8.712,22.816-8.712,31.506,0
+      C191.106,159.428,191.106,173.554,182.394,182.244z M182.394,93.119c-4.345,4.345-10.049,6.506-15.753,6.506
+      c-5.704,0-11.408-2.161-15.753-6.506c-8.712-8.69-8.712-22.816,0-31.506c8.69-8.712,22.816-8.712,31.506,0
+      C191.106,70.303,191.106,84.429,182.394,93.119z M311.469,467.287c-12.277,0-22.281-9.982-22.281-22.281
+      c0-12.299,10.004-22.281,22.281-22.281c12.277,0,22.281,9.982,22.281,22.281C333.75,457.305,323.746,467.287,311.469,467.287z
+       M311.469,333.6c-12.277,0-22.281-9.982-22.281-22.281c0-12.299,10.004-22.281,22.281-22.281c12.277,0,22.281,9.982,22.281,22.281
+      C333.75,323.618,323.746,333.6,311.469,333.6z M378.313,400.444c-12.277,0-22.281-9.982-22.281-22.281
+      c0-12.299,10.004-22.281,22.281-22.281s22.281,9.982,22.281,22.281C400.594,390.462,390.59,400.444,378.313,400.444z
+       M445.156,467.287c-12.277,0-22.281-9.982-22.281-22.281c0-12.299,10.004-22.281,22.281-22.281s22.281,9.982,22.281,22.281
+      C467.438,457.305,457.433,467.287,445.156,467.287z M445.156,333.6c-12.277,0-22.281-9.982-22.281-22.281
+      c0-12.299,10.004-22.281,22.281-22.281s22.281,9.982,22.281,22.281C467.438,323.618,457.433,333.6,445.156,333.6z"></path>
+</g>
+</g>
+</svg>
+</a>
+</li>
+</ul>
+</div>
+<div id="mobile-search-results"></div>
+</nav>
+</div>
+<div id="large-header">
+<nav class="first-row" aria-label="Adafruit main site">
+<div class="row-content">
+<nav aria-label="Adafruit applications menu">
+<ul class="application-links">
+<li><a aria-label="Adafruit Shop" href="https://www.adafruit.com/">Shop</a></li>
+<li class="selected"><a aria-label="Adafruit Learning System" href="https://learn.adafruit.com/">Learn</a></li>
+<li><a aria-label="Adafruit Blog" href="https://blog.adafruit.com/">Blog</a></li>
+<li><a aria-label="Adafruit Forums and Support" href="https://forums.adafruit.com/">Forums</a></li>
+<li><a aria-label="Adafruit Youtube Videos" href="https://www.youtube.com/adafruit/live">LIVE!</a></li>
+<li><a aria-label="Adafruit product box subscription" href="https://www.adabox.com/">AdaBox</a></li>
+<li><a aria-label="Adafruit IO, the internet of things" href="https://io.adafruit.com/">IO</a></li>
+</ul>
+</nav>
+<div id="account">
+<span class="sign-out"><a href="https://learn.adafruit.com/users/sign_in">Sign In</a></span>
+<div class="cart">
+<a aria-label="Shopping Cart, 0 items" aria-live="polite" href="https://www.adafruit.com/shopping_cart">
+<i class="fa fa-shopping-cart"></i> 0
+</a> </div>
+</div>
+</div>
+</nav>
+<nav class="second-row" aria-label="Adafruit Learn application">
+<div class="row-content">
+<div class="left-content">
+<div id="logo">
+<a title="Adafruit Learning System" href="https://learn.adafruit.com/">
+<img alt="Adafruit Logo" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/logo_2x.png">
+</a> </div>
+<ul class="main-nav-links">
+<li class="dropdown with-overlay nav-link">
+<button class="dropdown-label" aria-haspopup="true">Explore &amp; Learn</button>
+<div class="dropdown-container">
+<div class="dropdown-content" tabindex="-1">
+<div class="flyout">
+<div class="three-panels">
+<div class="first-column">
+<div class="content-header">
+<span class="title">Learn Categories</span><a class="view-all-count" href="https://learn.adafruit.com/search">view all</a>
+</div>
+<div class="categories">
+<ul>
+<li><a href="https://learn.adafruit.com/category/3d-printing">3D Printing</a></li>
+<li><a href="https://learn.adafruit.com/category/adabox">AdaBox</a></li>
+<li><a href="https://learn.adafruit.com/category/adafruit-products">Adafruit Products</a></li>
+<li><a href="https://learn.adafruit.com/category/arduino">Arduino Compatibles</a></li>
+<li><a href="https://learn.adafruit.com/category/breakout-boards">Breakout Boards</a></li>
+<li><a href="https://learn.adafruit.com/category/circuit-playground">Circuit Playground</a></li>
+<li><a href="https://learn.adafruit.com/category/circuitpython">CircuitPython</a></li>
+<li><a href="https://learn.adafruit.com/category/clue">CLUE</a></li>
+<li><a href="https://learn.adafruit.com/category/community-support">Community Support</a></li>
+<li><a href="https://learn.adafruit.com/category/components">Components</a></li>
+<li><a href="https://learn.adafruit.com/category/crickit">Crickit</a></li>
+<li><a href="https://learn.adafruit.com/category/customer-projects">Customer &amp; Partner Projects</a></li>
+<li><a href="https://learn.adafruit.com/category/development-boards">Development Boards</a></li>
+<li><a href="https://learn.adafruit.com/category/educators">Educators</a></li>
+<li><a href="https://learn.adafruit.com/category/el">EL Wire/Tape/Panel</a></li>
+<li><a href="https://learn.adafruit.com/category/feather">Feather</a></li>
+<li><a href="https://learn.adafruit.com/category/gaming-1">Gaming</a></li>
+</ul>
+<ul>
+<li><a href="https://learn.adafruit.com/category/hacks">Hacks</a></li>
+<li><a href="https://learn.adafruit.com/category/internet-of-things-iot">Internet of Things - IOT</a></li>
+<li><a href="https://learn.adafruit.com/category/lcds-and-displays">LCDs &amp; Displays</a></li>
+<li><a href="https://learn.adafruit.com/category/leds">LEDs</a></li>
+<li><a href="https://learn.adafruit.com/category/machine-learning">Machine Learning</a></li>
+<li><a href="https://learn.adafruit.com/category/makecode">MakeCode</a></li>
+<li><a href="https://learn.adafruit.com/category/maker-business">Maker Business</a></li>
+<li><a href="https://learn.adafruit.com/category/micro-bit">micro:bit</a></li>
+<li><a href="https://learn.adafruit.com/category/microcontrollers">Microcontrollers</a></li>
+<li><a href="https://learn.adafruit.com/category/programming">Programming</a></li>
+<li><a href="https://learn.adafruit.com/category/raspberry-pi">Raspberry Pi</a></li>
+<li><a href="https://learn.adafruit.com/category/robotics">Robotics &amp; CNC</a></li>
+<li><a href="https://learn.adafruit.com/category/sensors">Sensors</a></li>
+<li><a href="https://learn.adafruit.com/category/stemma">STEMMA</a></li>
+<li><a href="https://learn.adafruit.com/category/tools">Tools</a></li>
+<li><a href="https://learn.adafruit.com/category/trellis">Trellis</a></li>
+<li><a href="https://learn.adafruit.com/category/wearables">Wearables</a></li>
+</ul>
+</div>
+</div>
+<div class="middle-column">
+<div class="content-header">
+<span class="title">Groups</span><a class="view-all-count" href="https://learn.adafruit.com/groups">view all</a>
+</div>
+<ul class="links">
+<li>
+<a href="https://learn.adafruit.com/groups/circuit-playground">Circuit Playground</a>
+</li>
+<li>
+<a href="https://learn.adafruit.com/groups/adafruit-io-basics">Adafruit IO Basics</a>
+</li>
+<li>
+<a href="https://learn.adafruit.com/groups/collins-lab">Collin's Lab</a>
+</li>
+</ul>
+</div>
+<div class="last-column hide-md">
+<section class="image-content-card">
+<img class="lazy" aria-hidden="true" alt="STEMMA, Plug-n-play components" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/stemma-024f9c0c2063cd6b4b7c67cced3bf21dace7ab71444fd492a3faa0c15084c4bc.jpg" style="">
+<div class="text">
+<div class="main">
+<span>STEMMA</span>
+</div>
+<div class="tagline">
+<span>Plug-n-play components</span>
+</div>
+</div>
+<div class="button">
+<a title="Plug-n-play components, STEMMA" href="https://learn.adafruit.com/category/stemma">Get connected</a>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li class="nav-link">
+<a class="new-guides-link" href="https://learn.adafruit.com/guides/latest">New Guides</a>
+</li>
+<li class="nav-link">
+<a class="random-guide-link" aria-label="View a Random Guide" href="https://learn.adafruit.com/guides/random">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+<g>
+<path fill="currentColor" d="M478.578,244.475H278.047c-3.81,0-7.42,0.78-10.829,1.961l56.305-56.305c6.306-6.306,9.759-14.706,9.759-23.64
+      c0-8.935-3.454-17.335-9.759-23.64L190.282,9.609c-12.589-12.611-34.692-12.611-47.281,0L9.759,142.85
+      C3.454,149.156,0,157.556,0,166.491s3.454,17.335,9.759,23.64l133.242,133.242c6.306,6.306,14.683,9.759,23.64,9.759
+      c8.957,0,17.335-3.454,23.64-9.759l56.305-56.305c-1.181,3.409-1.961,7.019-1.961,10.829v200.531
+      c0,18.427,14.995,33.422,33.422,33.422h200.531c18.427,0,33.422-14.995,33.422-33.422V277.897
+      C512,259.47,497.005,244.475,478.578,244.475z M182.394,271.368c-4.345,4.345-10.049,6.506-15.753,6.506
+      s-11.408-2.161-15.753-6.506c-8.712-8.69-8.712-22.816,0-31.506c8.69-8.712,22.816-8.712,31.506,0
+      C191.106,248.552,191.106,262.679,182.394,271.368z M182.394,182.244c-4.345,4.345-10.049,6.506-15.753,6.506
+      c-5.704,0-11.408-2.161-15.753-6.506c-8.712-8.69-8.712-22.816,0-31.506c8.69-8.712,22.816-8.712,31.506,0
+      C191.106,159.428,191.106,173.554,182.394,182.244z M182.394,93.119c-4.345,4.345-10.049,6.506-15.753,6.506
+      c-5.704,0-11.408-2.161-15.753-6.506c-8.712-8.69-8.712-22.816,0-31.506c8.69-8.712,22.816-8.712,31.506,0
+      C191.106,70.303,191.106,84.429,182.394,93.119z M311.469,467.287c-12.277,0-22.281-9.982-22.281-22.281
+      c0-12.299,10.004-22.281,22.281-22.281c12.277,0,22.281,9.982,22.281,22.281C333.75,457.305,323.746,467.287,311.469,467.287z
+       M311.469,333.6c-12.277,0-22.281-9.982-22.281-22.281c0-12.299,10.004-22.281,22.281-22.281c12.277,0,22.281,9.982,22.281,22.281
+      C333.75,323.618,323.746,333.6,311.469,333.6z M378.313,400.444c-12.277,0-22.281-9.982-22.281-22.281
+      c0-12.299,10.004-22.281,22.281-22.281s22.281,9.982,22.281,22.281C400.594,390.462,390.59,400.444,378.313,400.444z
+       M445.156,467.287c-12.277,0-22.281-9.982-22.281-22.281c0-12.299,10.004-22.281,22.281-22.281s22.281,9.982,22.281,22.281
+      C467.438,457.305,457.433,467.287,445.156,467.287z M445.156,333.6c-12.277,0-22.281-9.982-22.281-22.281
+      c0-12.299,10.004-22.281,22.281-22.281s22.281,9.982,22.281,22.281C467.438,323.618,457.433,333.6,445.156,333.6z"></path>
+</g>
+</g>
+</svg>
+</a>
+</li>
+</ul>
+</div>
+<div class="right-content">
+<div class="search-wrapper">
+<div id="search-info" data-page="" data-app-id="W9DMM4OTH0" data-app-key="e613bcda3453b9ef887e2724362f9e57" data-app-index="learn_guides_production" data-app-uri="https://learn.adafruit.com"></div>
+<div id="search"><div class="ais-SearchBox"><form action="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr" role="search" class="ais-SearchBox-form" novalidate=""><input class="ais-SearchBox-input" type="search" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" maxlength="512"><button class="ais-SearchBox-submit" type="submit" title="Submit the search query." hidden=""><svg class="ais-SearchBox-submitIcon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40"> <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"></path> </svg></button><button class="ais-SearchBox-reset" type="reset" title="Clear the search query." hidden=""><svg class="ais-SearchBox-resetIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="10" height="10"> <path d="M8.114 10L.944 2.83 0 1.885 1.886 0l.943.943L10 8.113l7.17-7.17.944-.943L20 1.886l-.943.943-7.17 7.17 7.17 7.17.943.944L18.114 20l-.943-.943-7.17-7.17-7.17 7.17-.944.943L0 18.114l.943-.943L8.113 10z"></path> </svg></button><span class="ais-SearchBox-loadingIndicator" hidden=""><svg class="ais-SearchBox-loadingIcon" width="16" height="16" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#444"> <g fill="none" fillrule="evenodd"> <g transform="translate(1 1)" strokewidth="2"> <circle strokeopacity=".5" cx="18" cy="18" r="18"></circle> <path d="M36 18c0-9.94-8.06-18-18-18"> <animatetransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"></animatetransform> </path> </g> </g> </svg></span></form></div></div>
+<i class="fa fa-search"></i>
+</div>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main id="main-content">
+<div id="main-content-container" tabindex="-1">
+<div class="nav-bar ">
+<div class="content">
+<div class="left-content">
+<div class="breadcrumbs" aria-label="Breadcrumbs">
+<a href="https://learn.adafruit.com/"><i class="fa fa-home" role="img" title="Learn home"></i></a>
+<i class="fa fa-chevron-right separator"></i>
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr">Force Sensitive Resistor (FSR)</a> <i class="fa fa-chevron-right separator"></i> Using an FSR
+</div>
+</div>
+<div class="right-content">
+</div>
+</div>
+</div>
+<div id="page-wrapper" class="">
+<article id="content-wrapper" lang="en" class="double-sidebar-layout" data-page-id="87" data-guide-id="25">
+<aside class="sidebar-left-wrapper">
+<div class="sidebar-left-content" data-clampedwidth=".sidebar-left-wrapper" style="width: 309.4px;">
+<div class="sidebar-left">
+<header aria-label="Guide information" class="title-bar">
+<div class="image-container">
+<img aria-hidden="true" alt="A forse sensitive resistor next to a US quarter coin for scale" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/166.jpg" style="">
+</div>
+<h1>Force Sensitive Resistor (FSR)</h1>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/adafruit2">
+<span class="name">lady ada</span>
+</a> </div>
+<div class="page-tagline" aria-label="Guide tagline">Thin sensor that detects physical pressure.</div>
+</header>
+<nav aria-label="Guide navigation">
+<ul class="page-parent" aria-label="Guide pages">
+<li class="parent ">
+<a class="published" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/overview">Overview</a>
+</li>
+<li class="parent ">
+<a class="published" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/testing-an-fsr">Testing an FSR</a>
+</li>
+<li class="parent ">
+<a class="published" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/connecting-to-an-fsr">Connecting to an FSR</a>
+</li>
+<li class="parent active">
+<a class="published" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr">Using an FSR</a>
+</li>
+<li class="parent ">
+<a class="published" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/example-projects">Example Projects</a>
+</li>
+<li class="parent ">
+<a href="https://www.adafruit.com/products/166" class="published">Buy an FSR <i class="fa fa-external-link"></i></a>
+</li>
+</ul>
+<div class="single-page-spacer"></div>
+<ul class="page-parent" aria-label="Guide resources">
+<li class="single-page-link ">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/featured_products">Featured Products</a>
+</li>
+<li>
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr?view=all">Single page</a>
+</li>
+<li><a href="https://cdn-learn.adafruit.com/downloads/pdf/force-sensitive-resistor-fsr.pdf">Download PDF</a></li>
+</ul>
+</nav>
+<a class="feedback-link" title="Feedback? Corrections?" rel="nofollow" data-remote="true" data-method="get" href="https://learn.adafruit.com/feedback/new?page_id=87">
+Feedback? Corrections?
+</a>
+</div>
+</div>
+</aside>
+<section class="main-content" role="region" aria-label="Page content">
+<div class="page-header-wrapper">
+<h2 class="headline" aria-label="Page title">
+<span id="using-an-fsr">Using an FSR</span>
+</h2>
+<div class="badges">
+<span id="guide-favorite">
+<a class="btn-secondary category right red" aria-label="Select to Save this guide." data-remote="true" rel="nofollow" data-method="post" href="https://learn.adafruit.com/guides/25/favorites.js">
+<i class="fa fa-bookmark-o"></i> Save
+</a></span>
+<span id="subscribe-badge">
+<a data-toggle="modal" data-target="#guide-subscription-modal" class="btn-secondary right" aria-label="Select to subscribe to this guide." href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr">
+<i class="fa fa-bell-o"></i> Subscribe
+</a></span>
+<div id="guide-subscription-modal" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+<h4 class="modal-title">New Subscription</h4>
+</div>
+<div class="modal-body">
+<p>Please <a href="https://accounts.adafruit.com/users/sign_in">sign in</a> to subscribe to this guide.</p>
+<p>You will be redirected back to this guide once you <a href="https://accounts.adafruit.com/users/sign_in">sign in</a>, and can then subscribe to this guide.</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="page-content">
+<div class="" role="region" aria-label="Page content">
+<div class="row-fluid text-element">
+<h2>
+<div class="anchor-anchor">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#analog-voltage-reading-method-14173" class="anchor-link"><span class="fa fa-link"></span></a><span id="analog-voltage-reading-method-14173" class="anchor-link-target"></span>
+</div>Analog Voltage Reading Method</h2>
+<span>The easiest way to measure a resistive sensor is to connect one end to Power and the other to a&nbsp;<strong>pull-down</strong>&nbsp;resistor to ground. Then the point between the fixed pulldown resistor and the variable FSR resistor is connected to the analog input of a microcontroller such as an Arduino (shown).<br></span>
+</div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_fsrpulldowndia.png">
+<a href="https://learn.adafruit.com/assets/434">
+<img class="434-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/434/medium260/force___flex_fsrpulldowndia.png?1396762989 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/434/medium640/force___flex_fsrpulldowndia.png?1396762989 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/434/medium800/force___flex_fsrpulldowndia.png?1396762989 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/434/large1024/force___flex_fsrpulldowndia.png?1396762989 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_fsrpulldowndia.png" alt="force___flex_fsrpulldowndia.png">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_fsrpulldownsch.gif">
+<a href="https://learn.adafruit.com/assets/435">
+ <img class="435-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/435/medium260/force___flex_fsrpulldownsch.gif?1447975571 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/435/medium640/force___flex_fsrpulldownsch.gif?1447975571 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/435/medium800/force___flex_fsrpulldownsch.gif?1447975571 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/435/large1024/force___flex_fsrpulldownsch.gif?1447975571 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_fsrpulldownsch.gif" alt="force___flex_fsrpulldownsch.gif">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid text-element">
+<p>For this example I'm showing it with a 5V supply but note that you can use this with a 3.3v supply just as easily. In this configuration the analog voltage reading ranges from 0V (ground) to about 5V (or about the same as the power supply voltage).</p>
+<p>The way this works is that as the resistance of the FSR decreases, the total resistance of the FSR and the pulldown resistor decreases from about 100Kohm to 10Kohm. That means that the current flowing through both resistors&nbsp;<em>increases</em>&nbsp;which in turn causes the voltage across the fixed 10K resistor to increase. Its quite a trick!</p>
+</div>
+<div class="row-fluid text-element">
+<table><tbody>
+<tr>
+<th>Force (lb)</th>
+<th>Force (N)</th>
+<th>FSR Resistance</th>
+<th>(FSR + R) ohm<br>
+</th>
+<th>Current thru FSR+R</th>
+<th>Voltage across R</th>
+</tr>
+<tr>
+<th>None</th>
+<th>None</th>
+<td>Infinite</td>
+<td>Infinite!</td>
+<td>0 mA</td>
+<td>0V</td>
+</tr>
+<tr>
+<th>0.04 lb</th>
+<th>0.2 N</th>
+<td>30 Kohm</td>
+<td>40 Kohm</td>
+<td>0.13 mA</td>
+<td>1.3 V</td>
+</tr>
+<tr>
+<th>0.22 lb</th>
+<th>1 N</th>
+<td>6 Kohm</td>
+<td>16 Kohm</td>
+<td>0.31 mA</td>
+<td>3.1 V</td>
+</tr>
+<tr>
+<th>2.2 lb</th>
+<th>10 N</th>
+<td>1 Kohm</td>
+<td>11 Kohm</td>
+<td>0.45 mA</td>
+<td>4.5 V</td>
+</tr>
+<tr>
+<th>22 lb</th>
+<th>100 N</th>
+<td>250 ohm<br>
+</td>
+<td>10.25 Kohm</td>
+<td>0.49 mA</td>
+<td>4.9 V</td>
+</tr>
+</tbody></table>
+<br><br>
+</div>
+<div class="row-fluid text-element">
+<p><em>This table indicates the approximate analog voltage based on the sensor force/resistance w/a 5V supply and 10K pulldown resistor.</em></p>
+<p>Note that our method takes the somewhat linear resistivity but does not provide linear voltage! That's because the voltage equasion is:</p>
+<p><b>Vo = Vcc ( R / (R + FSR) )</b></p>
+<p><span>That is, the voltage is proportional to the&nbsp;</span><strong>inverse</strong><span>&nbsp;of the FSR resistance.</span><br></p>
+</div>
+<div class="row-fluid text-element">
+<h2>
+<div class="anchor-anchor">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#simple-demonstration-of-use-14179" class="anchor-link"><span class="fa fa-link"></span></a><span id="simple-demonstration-of-use-14179" class="anchor-link-target"></span>
+</div>Simple Demonstration of Use</h2>
+Wire the FSR as same as the above example, but this time lets add an LED to pin 11.<br>
+</div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_FSRandLED.png">
+<a href="https://learn.adafruit.com/assets/436">
+<img class="436-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/436/medium260/force___flex_FSRandLED.png?1396763015 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/436/medium640/force___flex_FSRandLED.png?1396763015 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/436/medium800/force___flex_FSRandLED.png?1396763015 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/436/large1024/force___flex_FSRandLED.png?1396763015 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_FSRandLED.png" alt="force___flex_FSRandLED.png">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_FSRledsch.gif">
+<a href="https://learn.adafruit.com/assets/437">
+<img class="437-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/437/medium260/force___flex_FSRledsch.gif?1447975580 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/437/medium640/force___flex_FSRledsch.gif?1447975580 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/437/medium800/force___flex_FSRledsch.gif?1447975580 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/437/large1024/force___flex_FSRledsch.gif?1447975580 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_FSRledsch.gif" alt="force___flex_FSRledsch.gif">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid text-element">
+<p>This sketch will take the analog voltage reading and use that to determine how bright the red LED is. The harder you press on the FSR, the brighter the LED will be! Remember that the LED has to be connected to a PWM pin for this to work, I use pin 11 in this example.</p>
+<p>These examples assume you know some basic Arduino programming. If you don't,&nbsp;<a href="http://www.ladyada.net/learn/arduino/index.html">maybe spend some time reviewing the basics at the Arduino tutorial?</a></p>
+</div>
+<div class="code-element" aria-label="Code element">
+<div class="download-code
+    ">
+<a data-turbo="false" class="download-button" href="https://learn.adafruit.com/pages/87/elements/14183/download">
+<i class="fa fa-cloud"></i> Download File
+</a> <div class="code-copy-container">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#" class="code-copy-button"><i class="fa fa-clipboard"></i> Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">/* FSR testing sketch. 
+ 
+Connect one end of FSR to 5V, the other end to Analog 0.
+Then connect one end of a 10K resistor from Analog 0 to ground
+Connect LED from pin 11 through a resistor to ground 
+ 
+For more information see www.ladyada.net/learn/sensors/fsr.html */
+ 
+int fsrAnalogPin = 0; // FSR is connected to analog 0
+int LEDpin = 11;      // connect Red LED to pin 11 (PWM pin)
+int fsrReading;      // the analog reading from the FSR resistor divider
+int LEDbrightness;
+ 
+void setup(void) {
+  Serial.begin(9600);   // We'll send debugging information via the Serial monitor
+  pinMode(LEDpin, OUTPUT);
+}
+ 
+void loop(void) {
+  fsrReading = analogRead(fsrAnalogPin);
+  Serial.print("Analog reading = ");
+  Serial.println(fsrReading);
+ 
+  // we'll need to change the range from the analog reading (0-1023) down to the range
+  // used by analogWrite (0-255) with map!
+  LEDbrightness = map(fsrReading, 0, 1023, 0, 255);
+  // LED gets brighter the harder you press
+  analogWrite(LEDpin, LEDbrightness);
+ 
+  delay(100);
+}</pre>
+<pre class="prettyprint hljs language-php"><span class="hljs-comment">/* FSR testing sketch. 
+ 
+Connect one end of FSR to 5V, the other end to Analog 0.
+Then connect one end of a 10K resistor from Analog 0 to ground
+Connect LED from pin 11 through a resistor to ground 
+ 
+For more information see www.ladyada.net/learn/sensors/fsr.html */</span>
+ 
+<span class="hljs-keyword">int</span> fsrAnalogPin = <span class="hljs-number">0</span>; <span class="hljs-comment">// FSR is connected to analog 0</span>
+<span class="hljs-keyword">int</span> LEDpin = <span class="hljs-number">11</span>;      <span class="hljs-comment">// connect Red LED to pin 11 (PWM pin)</span>
+<span class="hljs-keyword">int</span> fsrReading;      <span class="hljs-comment">// the analog reading from the FSR resistor divider</span>
+<span class="hljs-keyword">int</span> LEDbrightness;
+ 
+<span class="hljs-keyword">void</span> setup(<span class="hljs-keyword">void</span>) {
+  Serial.begin(<span class="hljs-number">9600</span>);   <span class="hljs-comment">// We'll send debugging information via the Serial monitor</span>
+  pinMode(LEDpin, OUTPUT);
+}
+ 
+<span class="hljs-keyword">void</span> loop(<span class="hljs-keyword">void</span>) {
+  fsrReading = analogRead(fsrAnalogPin);
+  Serial.<span class="hljs-keyword">print</span>(<span class="hljs-string">"Analog reading = "</span>);
+  Serial.println(fsrReading);
+ 
+  <span class="hljs-comment">// we'll need to change the range from the analog reading (0-1023) down to the range</span>
+  <span class="hljs-comment">// used by analogWrite (0-255) with map!</span>
+  LEDbrightness = map(fsrReading, <span class="hljs-number">0</span>, <span class="hljs-number">1023</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>);
+  <span class="hljs-comment">// LED gets brighter the harder you press</span>
+  analogWrite(LEDpin, LEDbrightness);
+ 
+  delay(<span class="hljs-number">100</span>);
+}</pre>
+</div>
+<div class="row-fluid text-element">
+<h2>
+<div class="anchor-anchor">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#simple-code-for-analog-fsr-measurements-14184" class="anchor-link"><span class="fa fa-link"></span></a><span id="simple-code-for-analog-fsr-measurements-14184" class="anchor-link-target"></span>
+</div>Simple Code for Analog FSR Measurements</h2>
+<span>Here is a code example for measuring the FSR on an analog pin.<br></span>
+</div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_fsrpulldowndia.png">
+<a href="https://learn.adafruit.com/assets/438">
+<img class="438-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/438/medium260/force___flex_fsrpulldowndia.png?1396763038 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/438/medium640/force___flex_fsrpulldowndia.png?1396763038 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/438/medium800/force___flex_fsrpulldowndia.png?1396763038 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/438/large1024/force___flex_fsrpulldowndia.png?1396763038 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_fsrpulldowndia(1).png" alt="force___flex_fsrpulldowndia.png">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_fsrpulldownsch.gif">
+<a href="https://learn.adafruit.com/assets/439">
+<img class="439-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/439/medium260/force___flex_fsrpulldownsch.gif?1447975589 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/439/medium640/force___flex_fsrpulldownsch.gif?1447975589 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/439/medium800/force___flex_fsrpulldownsch.gif?1447975589 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/439/large1024/force___flex_fsrpulldownsch.gif?1447975589 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_fsrpulldownsch(1).gif" alt="force___flex_fsrpulldownsch.gif">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_simpletestout.gif">
+<a href="https://learn.adafruit.com/assets/440">
+<img class="440-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/440/medium260/force___flex_simpletestout.gif?1447975598 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/440/medium640/force___flex_simpletestout.gif?1447975598 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/440/medium800/force___flex_simpletestout.gif?1447975598 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/440/large1024/force___flex_simpletestout.gif?1447975598 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_simpletestout.gif" alt="force___flex_simpletestout.gif">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid text-element">
+<span>This code doesn't do any calculations, it just prints out what it interprets as the amount of pressure in a qualitative manner. For most projects, this is pretty much all thats needed!</span>
+</div>
+<div class="code-element" aria-label="Code element">
+<div class="download-code
+    ">
+<a data-turbo="false" class="download-button" href="https://learn.adafruit.com/pages/87/elements/14189/download">
+<i class="fa fa-cloud"></i> Download File
+</a> <div class="code-copy-container">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#" class="code-copy-button"><i class="fa fa-clipboard"></i> Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">/* FSR simple testing sketch. 
+ 
+Connect one end of FSR to power, the other end to Analog 0.
+Then connect one end of a 10K resistor from Analog 0 to ground 
+ 
+For more information see www.ladyada.net/learn/sensors/fsr.html */
+ 
+int fsrPin = 0;     // the FSR and 10K pulldown are connected to a0
+int fsrReading;     // the analog reading from the FSR resistor divider
+ 
+void setup(void) {
+  // We'll send debugging information via the Serial monitor
+  Serial.begin(9600);   
+}
+ 
+void loop(void) {
+  fsrReading = analogRead(fsrPin);  
+ 
+  Serial.print("Analog reading = ");
+  Serial.print(fsrReading);     // the raw analog reading
+ 
+  // We'll have a few threshholds, qualitatively determined
+  if (fsrReading &lt; 10) {
+    Serial.println(" - No pressure");
+  } else if (fsrReading &lt; 200) {
+    Serial.println(" - Light touch");
+  } else if (fsrReading &lt; 500) {
+    Serial.println(" - Light squeeze");
+  } else if (fsrReading &lt; 800) {
+    Serial.println(" - Medium squeeze");
+  } else {
+    Serial.println(" - Big squeeze");
+  }
+  delay(1000);
+} </pre>
+<pre class="prettyprint hljs language-php"><span class="hljs-comment">/* FSR simple testing sketch. 
+ 
+Connect one end of FSR to power, the other end to Analog 0.
+Then connect one end of a 10K resistor from Analog 0 to ground 
+ 
+For more information see www.ladyada.net/learn/sensors/fsr.html */</span>
+ 
+<span class="hljs-keyword">int</span> fsrPin = <span class="hljs-number">0</span>;     <span class="hljs-comment">// the FSR and 10K pulldown are connected to a0</span>
+<span class="hljs-keyword">int</span> fsrReading;     <span class="hljs-comment">// the analog reading from the FSR resistor divider</span>
+ 
+<span class="hljs-keyword">void</span> setup(<span class="hljs-keyword">void</span>) {
+  <span class="hljs-comment">// We'll send debugging information via the Serial monitor</span>
+  Serial.begin(<span class="hljs-number">9600</span>);   
+}
+ 
+<span class="hljs-keyword">void</span> loop(<span class="hljs-keyword">void</span>) {
+  fsrReading = analogRead(fsrPin);  
+ 
+  Serial.<span class="hljs-keyword">print</span>(<span class="hljs-string">"Analog reading = "</span>);
+  Serial.<span class="hljs-keyword">print</span>(fsrReading);     <span class="hljs-comment">// the raw analog reading</span>
+ 
+  <span class="hljs-comment">// We'll have a few threshholds, qualitatively determined</span>
+  <span class="hljs-keyword">if</span> (fsrReading &lt; <span class="hljs-number">10</span>) {
+    Serial.println(<span class="hljs-string">" - No pressure"</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fsrReading &lt; <span class="hljs-number">200</span>) {
+    Serial.println(<span class="hljs-string">" - Light touch"</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fsrReading &lt; <span class="hljs-number">500</span>) {
+    Serial.println(<span class="hljs-string">" - Light squeeze"</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fsrReading &lt; <span class="hljs-number">800</span>) {
+    Serial.println(<span class="hljs-string">" - Medium squeeze"</span>);
+  } <span class="hljs-keyword">else</span> {
+    Serial.println(<span class="hljs-string">" - Big squeeze"</span>);
+  }
+  delay(<span class="hljs-number">1000</span>);
+} </pre>
+</div>
+<div class="row-fluid text-element">
+<h2>
+<div class="anchor-anchor">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#in-depth-code-for-analog-fsr-measurements-14190" class="anchor-link"><span class="fa fa-link"></span></a><span id="in-depth-code-for-analog-fsr-measurements-14190" class="anchor-link-target"></span>
+</div>In-Depth Code for Analog FSR Measurements</h2>
+<span>This Arduino sketch that assumes you have the FSR wired up as above, with a 10K? pull down resistor and the sensor is read on Analog 0 pin. It is pretty advanced and will measure the approximate Newton force measured by the FSR. This can be pretty useful for calibrating what forces you think the FSR will experience.<br></span>
+</div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_fsrpulldowndia.png">
+<a href="https://learn.adafruit.com/assets/441">
+<img class="441-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/441/medium260/force___flex_fsrpulldowndia.png?1396763071 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/441/medium640/force___flex_fsrpulldowndia.png?1396763071 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/441/medium800/force___flex_fsrpulldowndia.png?1396763071 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/441/large1024/force___flex_fsrpulldowndia.png?1396763071 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_fsrpulldowndia(2).png" alt="force___flex_fsrpulldowndia.png">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_fsrpulldownsch.gif">
+<a href="https://learn.adafruit.com/assets/442">
+<img class="442-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/442/medium260/force___flex_fsrpulldownsch.gif?1447975609 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/442/medium640/force___flex_fsrpulldownsch.gif?1447975609 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/442/medium800/force___flex_fsrpulldownsch.gif?1447975609 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/442/large1024/force___flex_fsrpulldownsch.gif?1447975609 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_fsrpulldownsch(2).gif" alt="force___flex_fsrpulldownsch.gif">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_fsrtester.gif">
+<a href="https://learn.adafruit.com/assets/443">
+<img class="443-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/443/medium260/force___flex_fsrtester.gif?1447975620 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/443/medium640/force___flex_fsrtester.gif?1447975620 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/443/medium800/force___flex_fsrtester.gif?1447975620 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/443/large1024/force___flex_fsrtester.gif?1447975620 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_fsrtester.gif" alt="force___flex_fsrtester.gif">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="code-element" aria-label="Code element">
+<div class="download-code
+    ">
+<a data-turbo="false" class="download-button" href="https://learn.adafruit.com/pages/87/elements/14194/download">
+<i class="fa fa-cloud"></i> Download File
+</a> <div class="code-copy-container">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#" class="code-copy-button"><i class="fa fa-clipboard"></i> Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">/* FSR testing sketch. 
+ 
+Connect one end of FSR to power, the other end to Analog 0.
+Then connect one end of a 10K resistor from Analog 0 to ground 
+ 
+For more information see www.ladyada.net/learn/sensors/fsr.html */
+ 
+int fsrPin = 0;     // the FSR and 10K pulldown are connected to a0
+int fsrReading;     // the analog reading from the FSR resistor divider
+int fsrVoltage;     // the analog reading converted to voltage
+unsigned long fsrResistance;  // The voltage converted to resistance, can be very big so make "long"
+unsigned long fsrConductance; 
+long fsrForce;       // Finally, the resistance converted to force
+ 
+void setup(void) {
+  Serial.begin(9600);   // We'll send debugging information via the Serial monitor
+}
+ 
+void loop(void) {
+  fsrReading = analogRead(fsrPin);  
+  Serial.print("Analog reading = ");
+  Serial.println(fsrReading);
+ 
+  // analog voltage reading ranges from about 0 to 1023 which maps to 0V to 5V (= 5000mV)
+  fsrVoltage = map(fsrReading, 0, 1023, 0, 5000);
+  Serial.print("Voltage reading in mV = ");
+  Serial.println(fsrVoltage);  
+ 
+  if (fsrVoltage == 0) {
+    Serial.println("No pressure");  
+  } else {
+    // The voltage = Vcc * R / (R + FSR) where R = 10K and Vcc = 5V
+    // so FSR = ((Vcc - V) * R) / V        yay math!
+    fsrResistance = 5000 - fsrVoltage;     // fsrVoltage is in millivolts so 5V = 5000mV
+    fsrResistance *= 10000;                // 10K resistor
+    fsrResistance /= fsrVoltage;
+    Serial.print("FSR resistance in ohms = ");
+    Serial.println(fsrResistance);
+ 
+    fsrConductance = 1000000;           // we measure in micromhos so 
+    fsrConductance /= fsrResistance;
+    Serial.print("Conductance in microMhos: ");
+    Serial.println(fsrConductance);
+ 
+    // Use the two FSR guide graphs to approximate the force
+    if (fsrConductance &lt;= 1000) {
+      fsrForce = fsrConductance / 80;
+      Serial.print("Force in Newtons: ");
+      Serial.println(fsrForce);      
+    } else {
+      fsrForce = fsrConductance - 1000;
+      fsrForce /= 30;
+      Serial.print("Force in Newtons: ");
+      Serial.println(fsrForce);            
+    }
+  }
+  Serial.println("--------------------");
+  delay(1000);
+}</pre>
+<pre class="prettyprint hljs language-go"><span class="hljs-comment">/* FSR testing sketch. 
+ 
+Connect one end of FSR to power, the other end to Analog 0.
+Then connect one end of a 10K resistor from Analog 0 to ground 
+ 
+For more information see www.ladyada.net/learn/sensors/fsr.html */</span>
+ 
+<span class="hljs-keyword">int</span> fsrPin = <span class="hljs-number">0</span>;     <span class="hljs-comment">// the FSR and 10K pulldown are connected to a0</span>
+<span class="hljs-keyword">int</span> fsrReading;     <span class="hljs-comment">// the analog reading from the FSR resistor divider</span>
+<span class="hljs-keyword">int</span> fsrVoltage;     <span class="hljs-comment">// the analog reading converted to voltage</span>
+unsigned long fsrResistance;  <span class="hljs-comment">// The voltage converted to resistance, can be very big so make "long"</span>
+unsigned long fsrConductance; 
+long fsrForce;       <span class="hljs-comment">// Finally, the resistance converted to force</span>
+ 
+void setup(void) {
+  Serial.begin(<span class="hljs-number">9600</span>);   <span class="hljs-comment">// We'll send debugging information via the Serial monitor</span>
+}
+ 
+void loop(void) {
+  fsrReading = analogRead(fsrPin);  
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">"Analog reading = "</span>);
+  Serial.<span class="hljs-built_in">println</span>(fsrReading);
+ 
+  <span class="hljs-comment">// analog voltage reading ranges from about 0 to 1023 which maps to 0V to 5V (= 5000mV)</span>
+  fsrVoltage = <span class="hljs-keyword">map</span>(fsrReading, <span class="hljs-number">0</span>, <span class="hljs-number">1023</span>, <span class="hljs-number">0</span>, <span class="hljs-number">5000</span>);
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">"Voltage reading in mV = "</span>);
+  Serial.<span class="hljs-built_in">println</span>(fsrVoltage);  
+ 
+  <span class="hljs-keyword">if</span> (fsrVoltage == <span class="hljs-number">0</span>) {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">"No pressure"</span>);  
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// The voltage = Vcc * R / (R + FSR) where R = 10K and Vcc = 5V</span>
+    <span class="hljs-comment">// so FSR = ((Vcc - V) * R) / V        yay math!</span>
+    fsrResistance = <span class="hljs-number">5000</span> - fsrVoltage;     <span class="hljs-comment">// fsrVoltage is in millivolts so 5V = 5000mV</span>
+    fsrResistance *= <span class="hljs-number">10000</span>;                <span class="hljs-comment">// 10K resistor</span>
+    fsrResistance /= fsrVoltage;
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">"FSR resistance in ohms = "</span>);
+    Serial.<span class="hljs-built_in">println</span>(fsrResistance);
+ 
+    fsrConductance = <span class="hljs-number">1000000</span>;           <span class="hljs-comment">// we measure in micromhos so </span>
+    fsrConductance /= fsrResistance;
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">"Conductance in microMhos: "</span>);
+    Serial.<span class="hljs-built_in">println</span>(fsrConductance);
+ 
+    <span class="hljs-comment">// Use the two FSR guide graphs to approximate the force</span>
+    <span class="hljs-keyword">if</span> (fsrConductance &lt;= <span class="hljs-number">1000</span>) {
+      fsrForce = fsrConductance / <span class="hljs-number">80</span>;
+      Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">"Force in Newtons: "</span>);
+      Serial.<span class="hljs-built_in">println</span>(fsrForce);      
+    } <span class="hljs-keyword">else</span> {
+      fsrForce = fsrConductance - <span class="hljs-number">1000</span>;
+      fsrForce /= <span class="hljs-number">30</span>;
+      Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">"Force in Newtons: "</span>);
+      Serial.<span class="hljs-built_in">println</span>(fsrForce);            
+    }
+  }
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">"--------------------"</span>);
+  delay(<span class="hljs-number">1000</span>);
+}</pre>
+</div>
+<div class="row-fluid text-element">
+<h2>
+<div class="anchor-anchor">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#bonus-reading-fsr-measurements-without-analog-pins-14195" class="anchor-link"><span class="fa fa-link"></span></a><span id="bonus-reading-fsr-measurements-without-analog-pins-14195" class="anchor-link-target"></span>
+</div>BONUS! &nbsp;Reading FSR Measurements Without Analog Pins.</h2>
+Because FSR's are basically resistors, its possible to use them even if you don't have any analog pins on your microcontroller (or if say you want to connect more than you have analog input pins. The way we do this is by taking advantage of a basic electronic property of resistors and capacitors. It turns out that if you take a capacitor that is initially storing no voltage, and then connect it to power through a resistor, it will charge up to the power voltage slowly. The bigger the resistor, the slower it is.<br>
+</div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_RCtimecapture.jpg">
+<a href="https://learn.adafruit.com/assets/444">
+<img class="444-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/444/medium260/force___flex_RCtimecapture.jpg?1396763093 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/444/medium640/force___flex_RCtimecapture.jpg?1396763093 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/444/medium800/force___flex_RCtimecapture.jpg?1396763093 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/444/large1024/force___flex_RCtimecapture.jpg?1396763093 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_RCtimecapture.jpg" alt="force___flex_RCtimecapture.jpg">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid text-element">
+<p><em>This capture from an oscilloscope shows whats happening on the digital pin (yellow). The blue line indicates when the sketch starts counting and when the couting is complete, about 1.2ms later.</em></p>
+<p>This is because the capacitor acts like a bucket and the resistor is like a thin pipe. To fill a bucket up with a very thin pipe takes enough time that you can figure out how wide the pipe is by timing how long it takes to fill the bucket up halfway.</p>
+</div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_RCtimediag.png">
+<a href="https://learn.adafruit.com/assets/445">
+<img class="445-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/445/medium260/force___flex_RCtimediag.png?1396763106 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/445/medium640/force___flex_RCtimediag.png?1396763106 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/445/medium800/force___flex_RCtimediag.png?1396763106 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/445/large1024/force___flex_RCtimediag.png?1396763106 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_RCtimediag.png" alt="force___flex_RCtimediag.png">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_RCtimesch.gif">
+<a href="https://learn.adafruit.com/assets/446">
+<img class="446-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/446/medium260/force___flex_RCtimesch.gif?1447975630 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/446/medium640/force___flex_RCtimesch.gif?1447975630 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/446/medium800/force___flex_RCtimesch.gif?1447975630 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/446/large1024/force___flex_RCtimesch.gif?1447975630 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_RCtimesch.gif" alt="force___flex_RCtimesch.gif">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid text-element">
+<span>In this case, our 'bucket' is a 0.1uF ceramic capacitor. You can change the capacitor nearly any way you want but the timing values will also change. 0.1uF seems to be an OK place to start for these FSRs.</span>
+</div>
+<div class="code-element" aria-label="Code element">
+<div class="download-code
+    ">
+<a data-turbo="false" class="download-button" href="https://learn.adafruit.com/pages/87/elements/14201/download">
+<i class="fa fa-cloud"></i> Download File
+</a> <div class="code-copy-container">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#" class="code-copy-button"><i class="fa fa-clipboard"></i> Copy Code</a>
+</div>
+</div>
+<pre class="code-text-only" style="display: none;">/* FSR simple testing sketch. 
+ 
+Connect one end of FSR to power, the other end to pin 2.
+Then connect one end of a 0.1uF capacitor from pin 2 to ground 
+ 
+For more information see www.ladyada.net/learn/sensors/fsr.html */
+ 
+int fsrPin = 2;     // the FSR and cap are connected to pin2
+int fsrReading;     // the digital reading
+int ledPin = 13;    // you can just use the 'built in' LED
+ 
+void setup(void) {
+  // We'll send debugging information via the Serial monitor
+  Serial.begin(9600);   
+  pinMode(ledPin, OUTPUT);  // have an LED for output 
+}
+ 
+void loop(void) {
+  // read the resistor using the RCtime technique
+  fsrReading = RCtime(fsrPin);
+ 
+  if (fsrReading == 30000) {
+    // if we got 30000 that means we 'timed out'
+    Serial.println("Nothing connected!");
+  } else {
+    Serial.print("RCtime reading = ");
+    Serial.println(fsrReading);     // the raw analog reading
+ 
+    // Do a little processing to keep the LED blinking
+    fsrReading /= 10;
+    // The more you press, the faster it blinks!
+    digitalWrite(ledPin, HIGH);
+    delay(fsrReading);
+    digitalWrite(ledPin, LOW);
+    delay(fsrReading);
+  }
+  delay(100);
+}
+ 
+// Uses a digital pin to measure a resistor (like an FSR or photocell!)
+// We do this by having the resistor feed current into a capacitor and
+// counting how long it takes to get to Vcc/2 (for most arduinos, thats 2.5V)
+int RCtime(int RCpin) {
+ int reading = 0;  // start with 0
+ 
+  // set the pin to an output and pull to LOW (ground)
+  pinMode(RCpin, OUTPUT);
+  digitalWrite(RCpin, LOW);
+ 
+  // Now set the pin to an input and...
+  pinMode(RCpin, INPUT);
+  while (digitalRead(RCpin) == LOW) { // count how long it takes to rise up to HIGH
+    reading++;      // increment to keep track of time 
+ 
+    if (reading == 30000) {
+      // if we got this far, the resistance is so high
+      // its likely that nothing is connected! 
+      break;           // leave the loop
+    }
+  }
+  // OK either we maxed out at 30000 or hopefully got a reading, return the count
+ 
+  return reading;
+}</pre>
+<pre class="prettyprint hljs language-php"><span class="hljs-comment">/* FSR simple testing sketch. 
+ 
+Connect one end of FSR to power, the other end to pin 2.
+Then connect one end of a 0.1uF capacitor from pin 2 to ground 
+ 
+For more information see www.ladyada.net/learn/sensors/fsr.html */</span>
+ 
+<span class="hljs-keyword">int</span> fsrPin = <span class="hljs-number">2</span>;     <span class="hljs-comment">// the FSR and cap are connected to pin2</span>
+<span class="hljs-keyword">int</span> fsrReading;     <span class="hljs-comment">// the digital reading</span>
+<span class="hljs-keyword">int</span> ledPin = <span class="hljs-number">13</span>;    <span class="hljs-comment">// you can just use the 'built in' LED</span>
+ 
+<span class="hljs-keyword">void</span> setup(<span class="hljs-keyword">void</span>) {
+  <span class="hljs-comment">// We'll send debugging information via the Serial monitor</span>
+  Serial.begin(<span class="hljs-number">9600</span>);   
+  pinMode(ledPin, OUTPUT);  <span class="hljs-comment">// have an LED for output </span>
+}
+ 
+<span class="hljs-keyword">void</span> loop(<span class="hljs-keyword">void</span>) {
+  <span class="hljs-comment">// read the resistor using the RCtime technique</span>
+  fsrReading = RCtime(fsrPin);
+ 
+  <span class="hljs-keyword">if</span> (fsrReading == <span class="hljs-number">30000</span>) {
+    <span class="hljs-comment">// if we got 30000 that means we 'timed out'</span>
+    Serial.println(<span class="hljs-string">"Nothing connected!"</span>);
+  } <span class="hljs-keyword">else</span> {
+    Serial.<span class="hljs-keyword">print</span>(<span class="hljs-string">"RCtime reading = "</span>);
+    Serial.println(fsrReading);     <span class="hljs-comment">// the raw analog reading</span>
+ 
+    <span class="hljs-comment">// Do a little processing to keep the LED blinking</span>
+    fsrReading /= <span class="hljs-number">10</span>;
+    <span class="hljs-comment">// The more you press, the faster it blinks!</span>
+    digitalWrite(ledPin, HIGH);
+    delay(fsrReading);
+    digitalWrite(ledPin, LOW);
+    delay(fsrReading);
+  }
+  delay(<span class="hljs-number">100</span>);
+}
+ 
+<span class="hljs-comment">// Uses a digital pin to measure a resistor (like an FSR or photocell!)</span>
+<span class="hljs-comment">// We do this by having the resistor feed current into a capacitor and</span>
+<span class="hljs-comment">// counting how long it takes to get to Vcc/2 (for most arduinos, thats 2.5V)</span>
+<span class="hljs-keyword">int</span> RCtime(<span class="hljs-keyword">int</span> RCpin) {
+ <span class="hljs-keyword">int</span> reading = <span class="hljs-number">0</span>;  <span class="hljs-comment">// start with 0</span>
+ 
+  <span class="hljs-comment">// set the pin to an output and pull to LOW (ground)</span>
+  pinMode(RCpin, OUTPUT);
+  digitalWrite(RCpin, LOW);
+ 
+  <span class="hljs-comment">// Now set the pin to an input and...</span>
+  pinMode(RCpin, INPUT);
+  <span class="hljs-keyword">while</span> (digitalRead(RCpin) == LOW) { <span class="hljs-comment">// count how long it takes to rise up to HIGH</span>
+    reading++;      <span class="hljs-comment">// increment to keep track of time </span>
+ 
+    <span class="hljs-keyword">if</span> (reading == <span class="hljs-number">30000</span>) {
+      <span class="hljs-comment">// if we got this far, the resistance is so high</span>
+      <span class="hljs-comment">// its likely that nothing is connected! </span>
+      <span class="hljs-keyword">break</span>;           <span class="hljs-comment">// leave the loop</span>
+    }
+  }
+  <span class="hljs-comment">// OK either we maxed out at 30000 or hopefully got a reading, return the count</span>
+ 
+  <span class="hljs-keyword">return</span> reading;
+}</pre>
+</div>
+<div class="row-fluid image-element" aria-label="Image: force___flex_RCtimeout.gif">
+<a href="https://learn.adafruit.com/assets/447">
+<img class="447-asset img-responsive" srcset="https://cdn-learn.adafruit.com/assets/assets/000/000/447/medium260/force___flex_RCtimeout.gif?1447975639 260w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/447/medium640/force___flex_RCtimeout.gif?1447975639 640w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/447/medium800/force___flex_RCtimeout.gif?1447975639 800w,
+               https://cdn-learn.adafruit.com/assets/assets/000/000/447/large1024/force___flex_RCtimeout.gif?1447975639 1024w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 65vw, (max-width: 1365px) 47vw, 750px" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_RCtimeout.gif" alt="force___flex_RCtimeout.gif">
+<span class="image-expand"><i class="fa fa-search-plus"></i></span>
+</a> </div>
+<div class="row-fluid text-element">
+<span>It is possible to calculate the actual resistance from the reading but unfortunately, variations in the IDE and arduino board will make it inconsistant. Be aware of that if you change IDE versions of&nbsp;</span>OS<span>'s, or use a 3.3V arduino instead of 5V, or change from a 16mhz Arduino to a 8Mhz one (like a lilypad) there may be differences due to how long it takes to read the value of a pin. Usually that isn't a big deal but it can make your project hard to debug if you aren't expecting it!</span>
+</div>
+</div>
+</div>
+<div class="page-navigation">
+<a class="previous-page btn-primary large" aria-label="Previous page" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/connecting-to-an-fsr">
+<i class="fa fa-chevron-left"></i>&nbsp;Connecting to an FSR
+</a> <a class="next-page btn-primary large" aria-label="Next page" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/example-projects">
+Example Projects&nbsp;<i class="fa fa-chevron-right"></i>
+</a> </div>
+<div class="page-last-updated">
+<p>
+This guide was first published on Jul 29, 2012. It was last
+updated on Jun 25, 2012.
+</p>
+<p>
+This page (Using an FSR) was last updated on Jun 25, 2012.
+</p>
+<p>Text editor powered by <a href="https://www.tiny.cloud/">tinymce</a>.</p>
+</div>
+</section>
+<aside class="sidebar-right-wrapper">
+<div class="sidebar-right-content">
+<section class="guide-metadata" aria-label="Guide metadata">
+<div class="metadata-group" aria-label="Skill level">
+<i class="fa fa-ellipsis-h" title="Skill Level"></i>
+<div>Difficulty: Beginner</div>
+</div>
+<div class="metadata-group" aria-label="Guide type">
+<i class="fa fa-bars" title="Guide type"></i>
+<div>Guide Type: Skill</div>
+</div>
+<div class="metadata-group" aria-label="Guide categories">
+<i class="fa fa-sitemap" title="Categories"></i>
+<div>Categories: <a href="https://learn.adafruit.com/category/sensors">Sensors</a><span class="category-link-spacer">/</span><a href="https://learn.adafruit.com/category/force-and-flex">Force &amp; Flex</a></div>
+</div>
+<div class="metadata-group" aria-label="Guide favorites count">
+<i class="fa fa-bookmark" title="Favorites count"></i>
+<div>44 Saves</div>
+</div>
+</section>
+<section class="featured-products" role="region" aria-label="Featured products for Guide">
+<div class="data-header">
+Featured Products
+<span class="view-all">
+</span>
+</div>
+<div class="products">
+<div class="product-wrapper">
+<div class="product-image">
+<img class="image-preview product-asset" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/166-02.jpg" alt="Finger pressing down on round FSR sensor" data-error="/assets/missing%2Fmissing.png">
+</div>
+<div class="product-details">
+<a href="https://www.adafruit.com/product/166">
+<div class="product-title">Round Force-Sensitive Resistor (FSR)</div>
+</a> <div class="product-price"></div>
+<a id="166-product" class="notify product-buy btn-primary " data-pid="166" data-qty="1" data-name="Round Force-Sensitive Resistor (FSR)" target="_blank" aria-live="polite" rel="noopener noreferrer" href="https://www.adafruit.com/product/166">Out of Stock</a>
+</div>
+</div>
+<div class="product-wrapper">
+<div class="product-image">
+<img class="image-preview product-asset" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/1075-00.jpg" alt="Finger pressing down on square force-sensitive sensor" data-error="/assets/missing%2Fmissing.png">
+</div>
+<div class="product-details">
+<a href="https://www.adafruit.com/product/1075">
+<div class="product-title">Square Force-Sensitive Resistor (FSR)</div>
+</a> <div class="product-price">$5.95</div>
+<a id="1075-product" class="product-buy btn-primary " data-pid="1075" data-qty="1" data-name="Square Force-Sensitive Resistor (FSR)" target="_blank" aria-live="polite" rel="noopener noreferrer" href="https://www.adafruit.com/product/1075">Add to Cart</a>
+</div>
+</div>
+<div class="product-wrapper">
+<div class="product-image">
+<img class="image-preview product-asset" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/1071-03.jpg" alt="Long coiled force-sensitive resistor (FSR) with two pin connector" data-error="/assets/missing%2Fmissing.png">
+</div>
+<div class="product-details">
+<a href="https://www.adafruit.com/product/1071">
+<div class="product-title">Extra-long force-sensitive resistor (FSR)</div>
+</a> <div class="product-price">$19.95</div>
+<a id="1071-product" class="product-buy btn-primary " data-pid="1071" data-qty="1" data-name="Extra-long force-sensitive resistor (FSR)" target="_blank" aria-live="polite" rel="noopener noreferrer" href="https://www.adafruit.com/product/1071">Add to Cart</a>
+</div>
+</div>
+<div class="product-wrapper">
+<div class="product-image">
+<img class="image-preview product-asset" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/724-08.jpg" alt="Angled shot of single black 2-pin 3.5mm terminal block." data-error="/assets/missing%2Fmissing.png">
+</div>
+<div class="product-details">
+<a href="https://www.adafruit.com/product/724">
+<div class="product-title">Terminal Block - 2-pin 3.5mm - pack of 5!</div>
+</a> <div class="product-price">$2.95</div>
+<a id="724-product" class="product-buy btn-primary " data-pid="724" data-qty="1" data-name="Terminal Block - 2-pin 3.5mm - pack of 5!" target="_blank" aria-live="polite" rel="noopener noreferrer" href="https://www.adafruit.com/product/724">Add to Cart</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+</aside>
+</article>
+<div class="related-guides-wrapper">
+<section class="content-card-group-preview">
+<div class="group-preview-headline">
+<div class="title">
+Related Guides
+</div>
+</div>
+<a class="scroll-back"><i class="fa fa-angle-left"></i></a>
+<div class="content-card-group-container">
+<div class="content-card-group">
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/adafruit-veml6070-uv-light-sensor-breakout">
+<div class="image-container">
+<img aria-hidden="true" alt="Adafruit VEML6070 UV Sensor Breakout" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/thumb.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/adafruit-veml6070-uv-light-sensor-breakout">Adafruit VEML6070 UV Sensor Breakout</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/adafruit2">
+<span class="name">lady ada</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+5
+</div>
+<div class="badge skill-level">
+Intermediate
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/nau7802-pet-food-scale">
+<div class="image-container">
+<img aria-hidden="true" alt="A scale with food container" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/edited_P1380412.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/nau7802-pet-food-scale">NAU7802 Pet Food Scale</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/BlitzCityDIY">
+<span class="name">Liz Clark</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+2
+</div>
+<div class="badge skill-level">
+Intermediate
+</div>
+<div class="badge updated">
+Updated
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/circuit-playground-bike-glove">
+<div class="image-container">
+<video class="video-preview lazy" preload="auto" muted="muted" loop="loop" autoplay="autoplay" playsinline="" data-error="/assets/missing%2Fmissing.png" 'aria-hidden'="true">
+<source src="https://cdn-learn.adafruit.com/guides/cropped_images/000/001/661/medium640mp4/ani_thumb2.mp4?1515090252">
+<source src="https://cdn-learn.adafruit.com/guides/cropped_images/000/001/661/medium640webm/ani_thumb2.webm?1515090252" type="video/webm; codecs=vp8,vorbis">
+Your browser does not support the video tag. This links to the guide Circuit Playground Bike Glove.
+</video>
+<img aria-hidden="true" alt="Circuit Playground Bike Glove" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/ani_thumb2.gif" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/circuit-playground-bike-glove">Circuit Playground Bike Glove</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/caternuson">
+<span class="name">Carter Nelson</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+24
+</div>
+<div class="badge skill-level">
+Intermediate
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/re-boots-animated-dancing-boot-laces">
+<div class="image-container">
+<video class="video-preview lazy" preload="auto" muted="muted" loop="loop" autoplay="autoplay" playsinline="" data-error="/assets/missing%2Fmissing.png" 'aria-hidden'="true">
+<source src="https://cdn-learn.adafruit.com/guides/cropped_images/000/000/939/medium640mp4/rebootsstomp2.mp4?1521519127">
+<source src="https://cdn-learn.adafruit.com/guides/cropped_images/000/000/939/medium640webm/rebootsstomp2.webm?1521519127" type="video/webm; codecs=vp8,vorbis">
+Your browser does not support the video tag. This links to the guide ReBoots Animated LED Boot Laces.
+</video>
+<img aria-hidden="true" alt="ReBoots Animated LED Boot Laces" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/rebootsstomp2.gif" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/re-boots-animated-dancing-boot-laces">ReBoots Animated LED Boot Laces</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/firepixie">
+<span class="name">Erin St Blaine</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+55
+</div>
+<div class="badge skill-level">
+Beginner
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/adafruit-nau7802-24-bit-adc-stemma-qt-qwiic">
+<div class="image-container">
+<img aria-hidden="true" alt="Top angle view of NAU7802 breakout board" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/4538-00.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/adafruit-nau7802-24-bit-adc-stemma-qt-qwiic">Adafruit NAU7802 24-Bit ADC - STEMMA QT / Qwiic</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/BlitzCityDIY">
+<span class="name">Liz Clark</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+6
+</div>
+<div class="badge skill-level">
+Beginner
+</div>
+<div class="badge updated">
+Updated
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/icedot-teardown">
+<div class="image-container">
+<img aria-hidden="true" alt="ICEdot Teardown" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/icedot-crash-sensor-teardown-adafruit-02.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/icedot-teardown">ICEdot Teardown</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/bekathwia">
+<span class="name">Becky Stern</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+4
+</div>
+<div class="badge skill-level">
+Beginner
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/calibrating-sensors">
+<div class="image-container">
+<img aria-hidden="true" alt="Calibrating Sensors" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/234A0501-Compressed.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/calibrating-sensors">Calibrating Sensors</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/adafruit_support_bill">
+<span class="name">Bill Earl</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+74
+</div>
+<div class="badge skill-level">
+Beginner
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/sensoglove-teardown">
+<div class="image-container">
+<img aria-hidden="true" alt="SensoGlove Teardown" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/sensoglove-teardown-adafruit-07.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/sensoglove-teardown">SensoGlove Teardown</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/bekathwia">
+<span class="name">Becky Stern</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+3
+</div>
+<div class="badge skill-level">
+Beginner
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/tilt-sensor">
+<div class="image-container">
+<img aria-hidden="true" alt="A tilt sensor, a sensor cut to show the inside and a US quarter for scale" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/force___flex_tiltcutaway.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/tilt-sensor">Tilt Sensor</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/adafruit2">
+<span class="name">lady ada</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+15
+</div>
+<div class="badge skill-level">
+Beginner
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/wireless-esp32-s2-controller-for-pure-data">
+<div class="image-container">
+<video class="video-preview lazy" preload="auto" muted="muted" loop="loop" autoplay="autoplay" playsinline="" data-error="/assets/missing%2Fmissing.png" 'aria-hidden'="true">
+<source src="https://cdn-learn.adafruit.com/guides/cropped_images/000/003/564/medium640mp4/titleGif.mp4?1649187719">
+<source src="https://cdn-learn.adafruit.com/guides/cropped_images/000/003/564/medium640webm/titleGif.webm?1649187719" type="video/webm; codecs=vp8,vorbis">
+Your browser does not support the video tag. This links to the guide Wireless ESP32-S2 Touch Screen Controller for Pure Data.
+</video>
+<img aria-hidden="true" alt="Animated GIF. Shows a Pure Data synth patch in the background. In the foreground, the ESP32-S2 controller is being used to control the patch." class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/titleGif.gif" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/wireless-esp32-s2-controller-for-pure-data">Wireless ESP32-S2 Touch Screen Controller for Pure Data</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/BlitzCityDIY">
+<span class="name">Liz Clark</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+16
+</div>
+<div class="badge skill-level">
+Beginner
+</div>
+<div class="badge updated">
+Updated
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/cutecircuit-twirkle-shirt-teardown">
+<div class="image-container">
+<img aria-hidden="true" alt="CuteCircuit Twirkle Shirt Teardown" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/twinkle-shirt-teardown-adafruit-00-smaller.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/cutecircuit-twirkle-shirt-teardown">CuteCircuit Twirkle Shirt Teardown</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/bekathwia">
+<span class="name">Becky Stern</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+8
+</div>
+<div class="badge skill-level">
+Beginner
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/clue-coffee-scale">
+<div class="image-container">
+<video class="video-preview lazy" preload="auto" muted="muted" loop="loop" autoplay="autoplay" playsinline="" data-error="/assets/missing%2Fmissing.png" 'aria-hidden'="true">
+<source src="https://cdn-learn.adafruit.com/guides/cropped_images/000/003/635/medium640mp4/espresso_action.mp4?1660755546">
+<source src="https://cdn-learn.adafruit.com/guides/cropped_images/000/003/635/medium640webm/espresso_action.webm?1660755546" type="video/webm; codecs=vp8,vorbis">
+Your browser does not support the video tag. This links to the guide Clue Coffee Scale.
+</video>
+<img aria-hidden="true" alt="The Clue Coffee Scale integrated with an espresso station." class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/espresso_action.gif" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/clue-coffee-scale">Clue Coffee Scale</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/CGrover">
+<span class="name">Jan Goolsbey</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+9
+</div>
+<div class="badge skill-level">
+Beginner
+</div>
+<div class="badge updated">
+Updated
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/power-glove-bluetooth-midi-controller">
+<div class="image-container">
+<img aria-hidden="true" alt="Power Glove Wireless MIDI Controller" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/powerglove_vcv04.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/power-glove-bluetooth-midi-controller">Power Glove Wireless MIDI Controller</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/johnpark">
+<span class="name">John Park</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+17
+</div>
+<div class="badge skill-level">
+Intermediate
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/basic-resistor-sensor-reading-on-raspberry-pi">
+<div class="image-container">
+<img aria-hidden="true" alt="Basic Resistor Sensor Reading on Raspberry Pi" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/raspberry_pi_shade.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/basic-resistor-sensor-reading-on-raspberry-pi">Basic Resistor Sensor Reading on Raspberry Pi</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/adafruit2">
+<span class="name">lady ada</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+18
+</div>
+<div class="badge skill-level">
+Intermediate
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="guide-preview content-card">
+<div class="preview-content">
+<a aria-hidden="true" href="https://learn.adafruit.com/midi-drum-glove">
+<div class="image-container">
+<img aria-hidden="true" alt="Flora MIDI Drum Glove" class="image-preview lazy" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/midi-drum-glove.jpg" style="">
+</div>
+</a>
+<div class="bottom-section">
+<div class="info">
+<a class="title" aria-label="Guide title" href="https://learn.adafruit.com/midi-drum-glove">Flora MIDI Drum Glove</a>
+<div class="author">
+By
+<a aria-label="Guide author" data-turbo="false" href="https://learn.adafruit.com/u/bekathwia">
+<span class="name">Becky Stern</span>
+</a> </div>
+</div>
+<div class="badges">
+<div class="badge favorites " title="Saves">
+74
+</div>
+<div class="badge skill-level">
+Intermediate
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a class="scroll-forward"><i class="fa fa-angle-right"></i></a>
+</section>
+</div>
+</div>
+<div class="modal fade" id="notify-modal">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#" class="close" data-dismiss="modal">×</a>
+<h5>OUT OF STOCK NOTIFICATION</h5>
+</div>
+<div class="modal-body">
+<p class="notify-modal-form-header"></p>
+<div class="notify-modal-products"></div>
+<form id="notify-modal-form" name="back_in_stock_notification">
+<p class="notify-modal-form-notice"></p>
+<div class="notify-modal-break"></div>
+<div class="form-group">
+<label class="inputLabel" for="name">YOUR NAME</label>
+<input type="text" size="25" maxlength="64" name="name" value="">
+</div>
+<div class="form-group">
+<label class="inputLabel" for="email">YOUR EMAIL</label>
+<input type="email" size="25" maxlength="96" name="email" value="">
+</div>
+<input type="hidden" name="notify_me" value="true">
+</form>
+<div id="notify-modal-success" style="display:none">
+<p>You have been successfully subscribed to the Notification List for this product and will therefore receive an e-mail from us when it is back in stock!</p>
+<p>For security reasons, an e-mail has been sent to you acknowledging your subscription. Please remember that this subscription will not result in you receiving any e-mail from us about anything other than the restocking of this item.</p>
+<p>If, for any reason, you would like to unsubscribe from the Notification List for this product you will find details of how to do so in the e-mail that has just been sent to you!</p>
+</div>
+</div>
+<div class="modal-footer">
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#" id="close-notify" style="display: none" data-dismiss="modal" data-target="#notify-modal">CLOSE</a>
+<a href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr#" id="submit-notify" rel="nofollow" class="blue-button">NOTIFY ME</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="search-container">
+<div class="nav-bar">
+<div class="content">
+<div class="left-content">
+<div class="breadcrumbs">
+<a href="https://learn.adafruit.com/" aria-label="Home page"><i class="fa fa-home"></i></a>
+<i class="fa fa-chevron-right separator"></i> Search <i class="fa fa-chevron-right separator"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="sub-header">
+<div class="header-intro">
+<h1 class="title">Search</h1>
+</div>
+<div class="header-main-content-wrapper">
+<div class="header-main-content">
+<div id="search-refinements" class="breakdown"><div class="ais-CurrentRefinements"><ul class="ais-CurrentRefinements-list"></ul></div>
+</div>
+</div>
+</div>
+</div>
+<div class="search-content">
+<div>
+<div class="facets-wrapper">
+<h5 class="search-refinement-header">Categories</h5>
+<div id="search-categories"><div class="ais-HierarchicalMenu root ais-HierarchicalMenu--noRefinement"></div></div>
+</div>
+</div>
+<div>
+<div id="search-results"><div class="no-results">No results for query</div></div>
+<div id="search-pagination" class="pagination"><div class="ais-Pagination ais-Pagination--noRefinement"><ul class="ais-Pagination-list"><li class="ais-Pagination-item item ais-Pagination-item--firstPage ais-Pagination-item--disabled disabled"><span class="ais-Pagination-link link">«</span></li><li class="ais-Pagination-item item ais-Pagination-item--previousPage ais-Pagination-item--disabled disabled"><span class="ais-Pagination-link link">‹</span></li><li class="ais-Pagination-item item ais-Pagination-item--page ais-Pagination-item--selected selected"><a class="ais-Pagination-link link" aria-label="1" href="https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr">1</a></li><li class="ais-Pagination-item item ais-Pagination-item--nextPage ais-Pagination-item--disabled disabled"><span class="ais-Pagination-link link">›</span></li><li class="ais-Pagination-item item ais-Pagination-item--lastPage ais-Pagination-item--disabled disabled"><span class="ais-Pagination-link link">»</span></li></ul></div></div>
+</div>
+</div>
+</div>
+<div id="remote-modal"></div>
+<div id="main-content-overlay"></div>
+</main>
+<footer id="adafruit-footer">
+<div class="footer-container">
+<div class="application-support-link">
+<div>
+<ul>
+<li>
+<a href="https://www.adafruit.com/contact_us">Contact Us</a>
+</li>
+<li>
+<a href="https://forums.adafruit.com/">Tech Support Forums</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/faq">FAQs</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/shippinginfo">Shipping &amp; Returns</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/terms_of_service">Terms of Service</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/privacy">Privacy &amp; Legal</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/accessibility">Website Accessibility</a>
+</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>
+<a href="https://www.adafruit.com/about">About Us</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/press">Press</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/educators">Educators</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/distributors">Distributors</a>
+</li>
+<li>
+<a href="https://jobs.adafruit.com/">Jobs</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/category/14">Gift Cards</a>
+</li>
+</ul>
+</div>
+</div>
+<aside>
+<div class="quote">"Artists are here to disturb the peace"</div>
+<div class="quote-attribution"><a href="https://en.wikipedia.org/wiki/James_Baldwin">James Baldwin</a></div>
+</aside>
+</div>
+<div class="footer-container bottom">
+<a title="About Adafruit" id="footer-logo" href="https://learn.adafruit.com/">
+<img alt="Adafruit Logo" src="./Using an FSR _ Force Sensitive Resistor (FSR) _ Adafruit Learning System_files/adafruit_logo_small.png">
+</a>
+<div class="social-links">
+<a href="https://www.instagram.com/adafruit/" target="_blank" rel="noopener noreferrer" aria-label="Adafruit on Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://twitter.com/adafruit/" target="_blank" rel="noopener noreferrer" aria-label="Adafruit on Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+<a class="mastodon-logo" href="https://mastodon.cloud/@adafruit" target="_blank" rel="me" aria-label="Adafruit on Mastodon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216.4144 232.00976"><path class="logo" d="M211.80734 139.0875c-3.18125 16.36625-28.4925 34.2775-57.5625 37.74875-15.15875 1.80875-30.08375 3.47125-45.99875 2.74125-26.0275-1.1925-46.565-6.2125-46.565-6.2125 0 2.53375.15625 4.94625.46875 7.2025 3.38375 25.68625 25.47 27.225 46.39125 27.9425 21.11625.7225 39.91875-5.20625 39.91875-5.20625l.8675 19.09s-14.77 7.93125-41.08125 9.39c-14.50875.7975-32.52375-.365-53.50625-5.91875C9.23234 213.82 1.40609 165.31125.20859 116.09125c-.365-14.61375-.14-28.39375-.14-39.91875 0-50.33 32.97625-65.0825 32.97625-65.0825C49.67234 3.45375 78.20359.2425 107.86484 0h.72875c29.66125.2425 58.21125 3.45375 74.8375 11.09 0 0 32.975 14.7525 32.975 65.0825 0 0 .41375 37.13375-4.59875 62.915" fill="currentColor"></path><path d="M177.50984 80.077v60.94125h-24.14375v-59.15c0-12.46875-5.24625-18.7975-15.74-18.7975-11.6025 0-17.4175 7.5075-17.4175 22.3525v32.37625H96.20734V85.42325c0-14.845-5.81625-22.3525-17.41875-22.3525-10.49375 0-15.74 6.32875-15.74 18.7975v59.15H38.90484V80.077c0-12.455 3.17125-22.3525 9.54125-29.675 6.56875-7.3225 15.17125-11.07625 25.85-11.07625 12.355 0 21.71125 4.74875 27.8975 14.2475l6.01375 10.08125 6.015-10.08125c6.185-9.49875 15.54125-14.2475 27.8975-14.2475 10.6775 0 19.28 3.75375 25.85 11.07625 6.36875 7.3225 9.54 17.22 9.54 29.675" fill="#000"></path></svg></a>
+<a href="https://www.facebook.com/adafruitindustries" target="_blank" rel="noopener noreferrer" aria-label="Adafruit on Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+<a href="https://www.youtube.com/adafruit" target="_blank" rel="noopener noreferrer" aria-label="Adafruit on YouTube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+<a href="https://github.com/adafruit" target="_blank" rel="noopener noreferrer" aria-label="Adafruit on Github"><i class="fa fa-github" aria-hidden="true"></i></a>
+<a class="tiktok-logo" aria-label="Adafruit on TikTok" href="https://www.tiktok.com/@adafruit" target="_blank" rel="noopener noreferrer"><svg viewBox="3 2 20 22" xmlns="http://www.w3.org/2000/svg"><path class="logo" d="M19.8059 7.50695C18.7771 7.50695 17.8278 7.16612 17.0655 6.59113C16.1912 5.93198 15.5631 4.9651 15.3412 3.85069C15.2863 3.57534 15.2567 3.29119 15.2539 3H12.3149V11.0308L12.3114 15.4297C12.3114 16.6057 11.5455 17.6029 10.4839 17.9536C10.1758 18.0553 9.8431 18.1036 9.49663 18.0846C9.05438 18.0603 8.63995 17.9268 8.27975 17.7113C7.51322 17.2529 6.99351 16.4212 6.97942 15.4698C6.95724 13.9829 8.15933 12.7706 9.64522 12.7706C9.93852 12.7706 10.2202 12.8185 10.4839 12.9054V10.7104V9.92134C10.2058 9.88015 9.92268 9.85867 9.63641 9.85867C8.01004 9.85867 6.48894 10.5347 5.40164 11.7526C4.57982 12.6731 4.08687 13.8473 4.01082 15.0786C3.91117 16.6962 4.50306 18.2339 5.65093 19.3683C5.81959 19.5349 5.9967 19.6895 6.1819 19.8321C7.16604 20.5894 8.36919 21 9.63641 21C9.92268 21 10.2058 20.9789 10.4839 20.9377C11.6677 20.7623 12.7599 20.2204 13.6219 19.3683C14.681 18.3215 15.2662 16.9318 15.2726 15.4526L15.2574 8.88369C15.7627 9.27347 16.3152 9.596 16.9081 9.84635C17.8303 10.2354 18.8081 10.4326 19.8144 10.4322V8.29814V7.50625C19.8151 7.50695 19.8066 7.50695 19.8059 7.50695Z" fill="currentColor"></path></svg></a>
+<a class="tumblr-logo" aria-label="Adafruit on Tumblr" href="https://adafruit.tumblr.com/" target="_blank" rel="noopener noreferrer"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
+</div>
+<div class="footer-messaging">
+<a href="https://www.adafruit.com/about">A Minority and Woman-owned Business Enterprise (M/WBE)</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+
+
+</body></html>
