@@ -1,0 +1,9 @@
+https://circuitdigest.com/microcontroller-projects/arduino-i2c-tutorial-communication-between-two-arduino
+
+https://docs.arduino.cc/learn/communication/wire
+
+https://www.electronicwings.com/arduino/arduino-i2c
+
+https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/
+
+https://www.circuitbasics.com/how-to-set-up-i2c-communication-for-arduino/

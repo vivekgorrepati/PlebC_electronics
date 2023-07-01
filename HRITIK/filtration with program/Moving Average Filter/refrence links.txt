@@ -1,0 +1,13 @@
+https://www.electrosoftcloud.com/en/improve-your-arduinos-analog-readings/
+https://www.electrosoftcloud.com/en/improve-your-arduinos-analog-readings-part-2/
+
+https://github.com/Danixu/averager/tree/master
+
+https://github.com/jellewie/Arduino-Stable-analog-read
+
+https://michaelthessel.com/analog-smoothing-library-for-arduino/
+https://github.com/MichaelThessel/arduino-analog-smooth
+
+https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/api-reference/peripherals/adc.html
+
+https://academy.programmingelectronics.com/tutorial-23-smoothing-data-old-version/

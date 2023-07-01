@@ -1,0 +1,15 @@
+put no load on your sensor and read out the value (ADCv),this is your offset. Store it in EEPROM of the controller.
+
+put 1 kg on your sensor and calculate gain:
+
+gain = 1000g / (ADCv - offset)
+
+Store gain in EEPROM
+
+calibration finished.
+
+To measure:
+
+Weight in gramms = gain * (ADCv - offset)
+
+finished.
