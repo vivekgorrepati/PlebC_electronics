@@ -6,8 +6,9 @@ import serial  # Import the appropriate library for your microcontroller communi
 websocket_url = "wss://torusserver-jhybo7-microtica.microtica.rocks"
 
 # Define the serial port settings for your microcontroller
-serial_port = "COM1"  # Replace with the actual serial port
-baud_rate = 9600  # Replace with the appropriate baud rate
+serial_port = "COM11"  # Replace with the actual serial port
+baud_rate = 115200  # Replace with the appropriate baud rate
+# ser = serial.Serial('COM4', baudrate=9600)
 
 # Create a serial connection to the microcontroller
 microcontroller = serial.Serial(serial_port, baud_rate)

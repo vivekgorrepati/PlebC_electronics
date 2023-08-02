@@ -7,11 +7,12 @@ import time
 import serial
 
 
+
 websocket_url = "wss://torusserver-jhybo7-microtica.microtica.rocks"  # Replace with your WebSocket server URL
 client = SocketCode.WebSocketClient(websocket_url)
 client.start()
 # Define the serial port and baud rate
-serial_port = 'COM10'  # Replace with your Arduino's serial port
+serial_port = 'COM3'  # Replace with your Arduino's serial port
 baud_rate = 115200  # Replace with your Arduino's baud rate
 
 
@@ -51,8 +52,11 @@ while True:
   
     # Split the line into individual values
     values = line.split('$')
-    #print(values)
+    print(time.time()*1000-timeelapsed)
+    print(values)
+    timeelapsed = time.time()*1000
     # Process the quaternion values
+    ''''
     if len(values) > 4:
         q=m.radians(-50);
         start_time = time.time()
@@ -94,7 +98,7 @@ while True:
         timeelapsed = round(time.time()*1000)
         
     
-
+    '''
 
 #start_time = time.time()
 
