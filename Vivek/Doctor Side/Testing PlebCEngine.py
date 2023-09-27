@@ -12,7 +12,7 @@ websocket_url = "wss://torusserver-jhybo7-microtica.microtica.rocks"  # Replace 
 client = SocketCode.WebSocketClient(websocket_url)
 client.start()
 # Define the serial port and baud rate
-serial_port = 'COM3'  # Replace with your Arduino's serial port
+serial_port = 'COM10'  # Replace with your Arduino's serial port
 baud_rate = 115200  # Replace with your Arduino's baud rate
 
 
