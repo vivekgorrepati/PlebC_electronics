@@ -6,10 +6,10 @@ import time
 import serial
 
 # Define the serial ports and baud rates for the IMU and controller
-imu_serial_port = 'COM3'  # Replace with your IMU's serial port
+imu_serial_port = 'COM10'  # Replace with your IMU's serial port
 imu_baud_rate = 115200    # Replace with your IMU's baud rate
 
-Controller_serial_port = 'COM6'  # Replace with your local sysytem controller serial port
+Controller_serial_port = 'COM2'  # Replace with your local sysytem controller serial port
 Controller_baud_rate = 9600     # Replace with your local syatem controller's baud rate
 
 
@@ -18,7 +18,7 @@ Controller_baud_rate = 9600     # Replace with your local syatem controller's ba
 imu_ser = serial.Serial(imu_serial_port, imu_baud_rate)
 
 # Create the serial connection for the controller
-controller_ser = serial.Serial(controller_serial_port, controller_baud_rate)
+controller_ser = serial.Serial(Controller_serial_port, Controller_baud_rate)
 
 i=1
 
@@ -98,8 +98,12 @@ while True:
             controller_data = f"{bestangles[0]} ${bestangles[1]} ${bestangles[2]}\n"
 
             # Send the data to the controller
-            controller_ser.write(controller_data.encode())
-            print(controller_data)
+            try:
+                controller_ser.write(controller_data.encode())
+                print(controller_data)
+            except:
+                print("error")
+
 
         timeelapsed = round(time.time()*1000)
         
