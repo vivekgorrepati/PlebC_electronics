@@ -18,7 +18,7 @@ Controller_baud_rate = 9600     # Replace with your local syatem controller's ba
 imu_ser = serial.Serial(imu_serial_port, imu_baud_rate)
 
 # Create the serial connection for the controller
-controller_ser = serial.Serial(controller_serial_port, controller_baud_rate)
+controller_ser = serial.Serial(Controller_serial_port, Controller_baud_rate)
 
 i=1
 
@@ -103,51 +103,3 @@ while True:
 
         timeelapsed = round(time.time()*1000)
         
-    
-    
-
-#start_time = time.time()
-
-# Your program code goes here
-'''
-def quaternion_from_rotation_matrix(matrix):
-    rotation = Rotation.from_matrix(matrix)
-    quaternion = rotation.as_quat()
-    return quaternion
-
-lambi = PlebCEngine.FK()
-torus = PlebCEngine.PlebcEngine()
-
-q=m.radians(-50);
-'''
-#RotationMatrixFromJointAngles = lambi.fwdKin(q,m.radians(10),m.radians(180),m.radians(120),0.15,0.00,0.32);
-#print(RotationMatrixFromJointAngles)
-'''
-r11 = RotationMatrixFromJointAngles[0,0]
-r12 = RotationMatrixFromJointAngles[0,1]
-r13 = RotationMatrixFromJointAngles[0,2]
-r21 = RotationMatrixFromJointAngles[1,0]
-r22 = RotationMatrixFromJointAngles[1,1]
-r23 = RotationMatrixFromJointAngles[1,2]=
-r31 = RotationMatrixFromJointAngles[2,0]
-r32 = RotationMatrixFromJointAngles[2,1]
-r33 = RotationMatrixFromJointAngles[2,2]
-
-RotMatrix = np.array([r11, r12, r13,
-                      r21, r22, r23,
-                      r31, r32, r33]).reshape(3,3)
-'''
-#print(RotMatrix)
-#quat = quaternion_from_rotation_matrix(RotMatrix)
-#quat  = np.array([qw,qx,qy,qz])
-#print("printing quat ",quat) 
-
-
-
-#wxyz = np.array([quat[3],quat[0],quat[1],quat[2]])
-#wxyz = np.array([0.0210,0.8502,-0.5201,-0.02001])
-#print("printing after swap to wxyz : ",wxyz)
-#print(torus.JointAnglesFromquat(quat))
-#end_time = time.time()
-#execution_time = end_time - start_time
-#print("Execution time: {execution_time} seconds")
