@@ -1,15 +1,16 @@
 import PlebCEngine
 import math as m
 import numpy as np
-from scipy.spatial.transform import Rotation
+from scipy.spatial.transform import Rotation as R
+
 import time
 import serial
 
 # Define the serial ports and baud rates for the IMU and controller
-imu_serial_port = 'COM10'  # Replace with your IMU's serial port
+imu_serial_port = 'COM3'  # Replace with your IMU's serial port
 imu_baud_rate = 115200    # Replace with your IMU's baud rate
 
-Controller_serial_port = 'COM2'  # Replace with your local sysytem controller serial port
+Controller_serial_port = 'COM8'  # Replace with your local sysytem controller serial port
 Controller_baud_rate = 9600     # Replace with your local syatem controller's baud rate
 
 
@@ -25,7 +26,12 @@ i=1
 prevq1=0
 prevq3=0
 prevq5=0
+initialRealOrientation = R.from_quat([1,0,0,0])
+desired_zero_orientation = R.from_quat([0,0,1,0])
+def transform_to_desired_zero(current_real_orientation):
+    delta_orientation = initialRealOrientation.inv() * current_real_orientation
 
+    return desired_zero_orientation * delta_orientation
 
 def computeBestAngle(jointAngles,prevq1,prevq3,prevq5):
     NextAngle = []
@@ -48,16 +54,18 @@ def computeBestAngle(jointAngles,prevq1,prevq3,prevq5):
 
 timeelapsed = 0
 bestangles = [0, 0, 0]  # Initialize with a default value
+count = 0
+
 while True:
     # Read data from the IMU's serial port
     imu_data = imu_ser.readline().decode().strip()
-    print(imu_data) 
+    print(imu_data)    
     
     # Split the line into individual values
     values = imu_data.split('$')
     # print(time.time()*1000-timeelapsed)
     # print(values)
-    timeelapsed = time.time()*1000
+    timeelapsed = time.time()*2000
     
     # Process the quaternion values 
     if len(values) > 4:
@@ -71,19 +79,23 @@ while True:
         # Process the quaternion values as needed
         # Example: Print the quaternion values
         #print("Quaternion: ({qw}, {qx}, {qy}, {qz})")
-        
+        if  count<1:
+            initialRealOrientation = R.from_quat(np.array([qw,qx,qy,qz]))
+            count=count+1
         lambi = PlebCEngine.FK()
         torus = PlebCEngine.PlebcEngine()
         
         quat  = np.array([qw,qx,qy,qz])
-        #print(type(qw))
+        relative_orientation = transform_to_desired_zero(R.from_quat(quat))
+        print("relative orientation : ", relative_orientation.as_quat())
+        
         # print(time.time()*1000-timeelapsed," : printing quat \n",quat)
         #timeelapsed = round(time.time()*1000)
         #wxyz = np.array([quat[3],quat[0],quat[1],quat[2]])
         #wxyz = np.array([0.0210,0.8502,-0.5201,-0.02001])
         #print("printing after swap to wxyz : ",wxyz)
     
-        jointAngles= torus.JointAnglesFromquat(quat,prevq1,prevq3,prevq5)
+        jointAngles= torus.JointAnglesFromquat(relative_orientation.as_quat(),prevq1,prevq3,prevq5)
         
         # print(time.time()*1000-timeelapsed," joint angles\n",jointAngles)
         #timeelapsed = round(time.time()*1000)
@@ -98,12 +110,9 @@ while True:
             controller_data = f"{bestangles[0]} ${bestangles[1]} ${bestangles[2]}\n"
 
             # Send the data to the controller
-            try:
-                controller_ser.write(controller_data.encode())
-                print(controller_data)
-            except:
-                print("error")
+            controller_ser.write(controller_data.encode())            
+            print(controller_data)
 
-
-        timeelapsed = round(time.time()*1000)
+        timeelapsed = round(time.time()*4000)
         
+    
