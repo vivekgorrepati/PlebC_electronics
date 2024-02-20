@@ -41,20 +41,15 @@
 // Probe Check Sensor or Magnetic Switch
 #define probeCheckSensor PB8
 
-#define NANO_ADDRESS 0x42 // Arduino Nano's I2C address
-//Set pins for I2C2
-#define I2C2_SDA_PIN PB4
-#define I2C2_SCL_PIN PA8
-
 #define calibration_factor -125000 //This value is obtained using the SparkFun_HX711_Calibration sketch
 HX711 scale;
 
-#define I2C_Address 0x42
+#define I2C_Address 0x08
 #define MAX_REMOTE_DATA_LENGTH 50 // Maximum length of the string
-char remoteData[MAX_REMOTE_DATA_LENGTH]; // Buffer to store the received string
+//char remoteData[MAX_REMOTE_DATA_LENGTH]; // Buffer to store the received string
+#define TIMEOUT_MS 1000 // Timeout in milliseconds
 
-
-TwoWire Wire2(PB3, PB10);
+TwoWire Wire2(PB4, PA8);
 
 float lastw = 0,lastx =0,lasty =0,lastz = 0;
 
@@ -159,20 +154,48 @@ void pressure(){
   }
 
 void remote(){
-    int i = 0;
-  // Request the entire string from the I2C device
-  Wire2.requestFrom(I2C_Address, MAX_REMOTE_DATA_LENGTH);
+  char receivedMessage[MAX_REMOTE_DATA_LENGTH]; // Buffer to store the received message
+  int messageLength = 0; // Length of the received message
+  bool withinMessage = false; // Flag to track whether we are within the message
 
-  // Read characters until buffer is full or end of transmission is reached
-  while (Wire2.available() > 0 && i < MAX_REMOTE_DATA_LENGTH - 1) {
+  // Request the entire string from the I2C device
+  Wire2.requestFrom(I2C_Address, MAX_REMOTE_DATA_LENGTH, true); // Request with stop signal
+
+  unsigned long startMillis = millis(); // Start time for timeout
+
+  // Read characters until buffer is full, end of transmission is reached, or '*' is encountered
+  while (Wire2.available() && messageLength < MAX_REMOTE_DATA_LENGTH - 1) {
     char c = Wire2.read(); // Read one byte
-    remoteData[i] = c; // Store the byte in the buffer
-    i++;
+    if (c == '#') {
+      withinMessage = true; // Start of message
+      continue; // Skip '#' character
+    } else if (c == '*') {
+      break; // End of message reached
+    }
+    if (withinMessage) {
+      receivedMessage[messageLength++] = c; // Store the byte in the buffer
+    }
+    // Check for timeout
+    if (millis() - startMillis > TIMEOUT_MS) {
+      Serial.println("Timeout occurred while waiting for data.");
+      break; // Break if timeout occurs
+    }
   }
-  remoteData[i] = '\0'; // Null-terminate the string
-  // Print the received string
-  Serial.println(remoteData);
+
+  // Trim trailing whitespace characters
+  while (messageLength > 0 && isspace(receivedMessage[messageLength - 1])) {
+    messageLength--;
   }
+
+  receivedMessage[messageLength] = '\0'; // Null-terminate the string
+
+  // Print the received message if it's not empty
+  if (messageLength > 0) {
+    String gantryString = "Gantry values : " + String(receivedMessage) ;
+    Serial.println(gantryString);
+  }
+
+ }
   
 void probeCheck(){
   while (digitalRead(probeCheckSensor) == 1) {
