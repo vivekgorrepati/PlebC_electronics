@@ -59,19 +59,23 @@ void setup()
 //    }
   
 // }
+ // Serial.println(receivedMessage);
+    // String receivedString = receivedMessage;
+    // //delay(1000);
 
-void loop()
-{
-    bestAngles();
-    
-    // String receivedString = Serial.readStringUntil('\n');
-  
+
+void loop() {
+  bestAngles();
+  //if (Serial.available()) {
+    //String receivedString = Serial.readStringUntil('\n');
+    //delay(2000);
     Serial.println(receivedMessage);
     String receivedString = receivedMessage;
     
+
     // Split the received string into angle values
-    char *token;
-    char *angleStr;
+    char* token;
+    char* angleStr;
     char receivedChars[receivedString.length() + 1];
     strcpy(receivedChars, receivedString.c_str());
 
@@ -83,25 +87,23 @@ void loop()
     // Process the remaining angles
     token = strtok(NULL, "$");
     int angleIndex = 2;
-    while (token != NULL)
-    {
-        angleStr = token;
-        float angle = atof(angleStr);
+    while (token != NULL) {
+      angleStr = token;
+      float angle = atof(angleStr);
 
-        // Assign angles to the corresponding motors
-        switch (angleIndex)
-        {
+      // Assign angles to the corresponding motors
+      switch (angleIndex) {
         case 2:
-            angle_2 = angle;
-            break;
+          angle_2 = angle;
+          break;
         case 3:
-            angle_3 = angle;
-            break;
+          angle_3 = angle;
+          break;
         // Add more cases if needed for additional motors
-        }
+      }
 
-        token = strtok(NULL, "$");
-        angleIndex++;
+      token = strtok(NULL, "$");
+      angleIndex++;
     }
 
     // Move each motor to the corresponding angle
@@ -112,18 +114,18 @@ void loop()
     stepper1.moveTo(targetPosition_1);
     stepper2.moveTo(targetPosition_2);
     stepper3.moveTo(targetPosition_3);
+  //}
 
-    // Update all motors
-    stepper1.run();
-    stepper2.run();
-    stepper3.run();
-
-    // Check if each motor has reached its target position
-    if (!stepper1.isRunning() && !stepper2.isRunning() && !stepper3.isRunning())
-    {
-        // All motors have reached their target positions
-        // Do something if needed after all motors have stopped moving
-    }
+  // Update all motors
+  stepper1.run();
+  stepper2.run();
+  stepper3.run();
+  
+  // Check if each motor has reached its target position
+  if (!stepper1.isRunning() && !stepper2.isRunning() && !stepper3.isRunning()) {
+    // All motors have reached their target positions
+    // Do something if needed after all motors have stopped moving
+  }
 }
 
 void bestAngles()

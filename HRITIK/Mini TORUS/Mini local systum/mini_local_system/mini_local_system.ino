@@ -1,3 +1,4 @@
+
 #include <AccelStepper.h>
 
 // Define the number of steps per revolution for your stepper motor
@@ -10,8 +11,8 @@ const float gearRatio_3 = 1.0; // Gear ratio for motor 3
 
 // Create instances of the AccelStepper class for each motor
 // Pins entered in sequence IN1-IN3-IN2-IN4 for proper step sequence
-AccelStepper stepper1(AccelStepper::FULL4WIRE, 2, 4, 3, 5); // Motor 1 - Wire connections
-AccelStepper stepper2(AccelStepper::FULL4WIRE, 6, 8, 7, 9); // Motor 2 - Wire connections
+AccelStepper stepper1(AccelStepper::FULL4WIRE, 6, 8, 7, 9); // Motor 1 - Wire connections
+AccelStepper stepper2(AccelStepper::FULL4WIRE, 2, 4, 3, 5); // Motor 2 - Wire connections
 AccelStepper stepper3(AccelStepper::FULL4WIRE, 10, 12, 11, 13); // Motor 3 - Wire connections
 
 // Variables to store the angles for each motor
