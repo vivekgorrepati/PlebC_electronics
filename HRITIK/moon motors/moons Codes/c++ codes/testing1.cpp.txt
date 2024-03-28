@@ -1,0 +1,82 @@
+#include <iostream>
+#include <modbus.h>
+#include <time.h>
+#include <chrono>
+#include <thread>
+#include <cstdint>
+#include <ctime>
+#include <iomanip>
+
+int main() {
+    
+    modbus_t* ctx = nullptr;
+    ctx = modbus_new_rtu("\\\\.\\COM15", 115200, 'N', 8, 1); // Replace with your device's serial port and settings
+
+    if (ctx == nullptr) {
+        std::cerr << "Error creating Modbus context." << std::endl;
+        return 1;
+    }
+
+    modbus_set_slave(ctx, 1); // Set the slave address
+
+    if (modbus_set_slave(ctx, 1) == -1) {
+        fprintf(stderr, "Invalid slave ID\n");
+        modbus_free(ctx);
+        return -1;
+    }
+
+    if (modbus_connect(ctx) == -1) {
+        std::cerr << "Connection failed: " << modbus_strerror(errno) << std::endl;
+        modbus_free(ctx);
+        return -1;
+    }
+
+    int current_steps = 0;
+    int angles_list[] = { 270, -270, 30, 270, -270, 180, 270, -270, 40, 270, -270, 270, -270, 270, -270, 0 };
+    const int num_angles = sizeof(angles_list) / sizeof(angles_list[0]);
+
+    for (int serial_number = 1; serial_number <= num_angles; ++serial_number) {
+        int angle = angles_list[serial_number - 1];
+
+        // Get the current time
+        auto now = std::chrono::system_clock::now();
+        std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+
+        // Convert time to human-readable string
+        char time_str[100];
+        std::strftime(time_str, sizeof(time_str), "%H:%M:%S", std::localtime(&now_time));
+
+        // Get milliseconds
+        auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
+
+        // Print the angle and human-readable time with milliseconds
+        std::cout << serial_number << " " << angle << " time: " << time_str << "." << std::setfill('0') << std::setw(3) << milliseconds.count() << std::endl;
+
+        int target_steps = static_cast<int>((20000.0 / 360.0) * angle);
+        int steps = target_steps - current_steps;
+        uint16_t values_to_write[2] = { static_cast<uint16_t>((steps >> 16) & 0xFFFF), static_cast<uint16_t>(steps & 0xFFFF) };
+
+        std::cout << " Before writing time: " << time_str << "." << std::setfill('0') << std::setw(3) << milliseconds.count() << std::endl;
+        modbus_write_registers(ctx, 30, 2, values_to_write); // Write the values to the registers
+        modbus_write_register(ctx, 124, 102); // Send command to control register
+        std::cout << " After writing time: " << time_str << "." << std::setfill('0') << std::setw(3) << milliseconds.count() << std::endl;
+        current_steps += steps;
+
+        //std::this_thread::sleep_for(std::chrono::milliseconds(300));
+        std::this_thread::sleep_for(std::chrono::milliseconds(900));
+
+        
+        std::cout << "Before reading time: " << time_str << "." << std::setfill('0') << std::setw(3) << milliseconds.count() << std::endl;
+        uint16_t registers_values[2];
+        modbus_read_registers(ctx, 4, 2, registers_values); // Read the values from two consecutive registers (registers 5 and 6)
+        std::cout << "After reading time: " << time_str << "." << std::setfill('0') << std::setw(3) << milliseconds.count() << std::endl;
+
+        uint32_t encoder_value = (registers_values[0] << 16) | registers_values[1];
+        std::cout << "Encoder value: " << encoder_value << " time: " << time_str << "." << std::setfill('0') << std::setw(3) << milliseconds.count() << std::endl;
+        std::cout << "" << std::endl;
+    }
+
+    modbus_close(ctx);
+    modbus_free(ctx);
+    return 0;
+}

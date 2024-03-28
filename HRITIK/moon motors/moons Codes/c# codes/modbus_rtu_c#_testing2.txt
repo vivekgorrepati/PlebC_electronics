@@ -1,0 +1,68 @@
+using System;
+using System.IO.Ports;
+using Modbus.Device;
+using System.Threading;
+using System.Diagnostics;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        using (SerialPort port = new SerialPort("COM15", 115200, Parity.None, 8, StopBits.One))
+        {
+            port.Open();
+
+            using (ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(port))
+            {
+                master.Transport.ReadTimeout = 500; // Adjust as needed
+
+                int currentSteps = 0;
+                int[] anglesList = { 270, -270, 30, 270, -270, 180, 270, -270, 40, 270, -270, 270, -270, 270, -270, 0 };
+
+                for (int i = 0; i < anglesList.Length; i++)
+                {
+                    int angle = anglesList[i];
+                    Console.WriteLine($"Angle: {angle} time: {GetCurrentTime()}");
+
+                    int targetSteps = (int)((20000.0 / 360.0) * angle);
+                    int steps = targetSteps - currentSteps;
+                    ushort[] valuesToWrite = { (ushort)((steps >> 16) & 0xFFFF), (ushort)(steps & 0xFFFF) };
+
+                    // Start the timer for write operations
+                    Stopwatch writeTimer = Stopwatch.StartNew();
+
+                    master.WriteMultipleRegisters(1, 30, valuesToWrite);
+                    master.WriteSingleRegister(1, 124, 102);
+
+                    writeTimer.Stop();
+
+                    // Print the elapsed time for write operations
+                    Console.WriteLine($"Time taken for write operations: {writeTimer.ElapsedMilliseconds} ms");
+
+                    currentSteps += steps;
+
+                    Thread.Sleep(350); // Adjust sleep duration as needed
+
+                    // Start the timer for read operations
+                    Stopwatch readTimer = Stopwatch.StartNew();
+
+                    ushort[] registersValues = master.ReadHoldingRegisters(1, 4, 2);
+
+                    readTimer.Stop();
+
+                    // Print the elapsed time for read operations
+                    Console.WriteLine($"Time taken for read operations: {readTimer.ElapsedMilliseconds} ms");
+
+                    uint encoderValue = (uint)((registersValues[0] << 16) | registersValues[1]);
+                    Console.WriteLine($"Encoder value: {encoderValue} time: {GetCurrentTime()}");
+                    Console.WriteLine();
+                }
+            }
+        }
+    }
+
+    static string GetCurrentTime()
+    {
+        return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+    }
+}

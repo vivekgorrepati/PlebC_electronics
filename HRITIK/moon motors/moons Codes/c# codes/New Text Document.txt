@@ -1,0 +1,79 @@
+Angle: 270 time: 2024-03-06 17:02:43.417
+Time taken for write operations: 110 ms
+Time taken for read operations: 36 ms
+Encoder value: 3072 time: 2024-03-06 17:02:44.174
+
+Angle: -270 time: 2024-03-06 17:02:44.201
+Time taken for write operations: 38 ms
+Time taken for read operations: 23 ms
+Encoder value: 4294964360 time: 2024-03-06 17:02:44.680
+
+Angle: 30 time: 2024-03-06 17:02:44.680
+Time taken for write operations: 88 ms
+Time taken for read operations: 12 ms
+Encoder value: 340 time: 2024-03-06 17:02:45.147
+
+Angle: 270 time: 2024-03-06 17:02:45.147
+Time taken for write operations: 35 ms
+Time taken for read operations: 16 ms
+Encoder value: 3072 time: 2024-03-06 17:02:45.564
+
+Angle: -270 time: 2024-03-06 17:02:45.564
+Time taken for write operations: 31 ms
+Time taken for read operations: 18 ms
+Encoder value: 4294964815 time: 2024-03-06 17:02:45.979
+
+Angle: 180 time: 2024-03-06 17:02:45.979
+Time taken for write operations: 31 ms
+Time taken for read operations: 21 ms
+Encoder value: 1053 time: 2024-03-06 17:02:46.397
+
+Angle: 270 time: 2024-03-06 17:02:46.397
+Time taken for write operations: 29 ms
+Time taken for read operations: 16 ms
+Encoder value: 3072 time: 2024-03-06 17:02:46.796
+
+Angle: -270 time: 2024-03-06 17:02:46.796
+Time taken for write operations: 30 ms
+Time taken for read operations: 13 ms
+Encoder value: 4294964941 time: 2024-03-06 17:02:47.195
+
+Angle: 40 time: 2024-03-06 17:02:47.195
+Time taken for write operations: 31 ms
+Time taken for read operations: 7 ms
+Encoder value: 98 time: 2024-03-06 17:02:47.594
+
+Angle: 270 time: 2024-03-06 17:02:47.595
+Time taken for write operations: 31 ms
+Time taken for read operations: 17 ms
+Encoder value: 3062 time: 2024-03-06 17:02:47.997
+
+Angle: -270 time: 2024-03-06 17:02:47.998
+Time taken for write operations: 33 ms
+Time taken for read operations: 10 ms
+Encoder value: 4294964956 time: 2024-03-06 17:02:48.395
+
+Angle: 270 time: 2024-03-06 17:02:48.395
+Time taken for write operations: 31 ms
+Time taken for read operations: 5 ms
+Encoder value: 934 time: 2024-03-06 17:02:48.795
+
+Angle: -270 time: 2024-03-06 17:02:48.796
+Time taken for write operations: 30 ms
+Time taken for read operations: 16 ms
+Encoder value: 1293 time: 2024-03-06 17:02:49.196
+
+Angle: 270 time: 2024-03-06 17:02:49.196
+Time taken for write operations: 30 ms
+Time taken for read operations: 9 ms
+Encoder value: 4294964766 time: 2024-03-06 17:02:49.595
+
+Angle: -270 time: 2024-03-06 17:02:49.595
+Time taken for write operations: 31 ms
+Time taken for read operations: 21 ms
+Encoder value: 3065 time: 2024-03-06 17:02:50.011
+
+Angle: 0 time: 2024-03-06 17:02:50.016
+Time taken for write operations: 24 ms
+Time taken for read operations: 16 ms
+Encoder value: 4294964451 time: 2024-03-06 17:02:50.411

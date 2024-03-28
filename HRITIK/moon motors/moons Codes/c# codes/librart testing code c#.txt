@@ -1,0 +1,22 @@
+using System;
+using System.Reflection;
+
+class Program
+{
+    static void Main()
+    {
+        string assemblyName = "NModbus4"; // Replace with the actual assembly name
+
+       try
+        {
+            Assembly.Load(assemblyName);
+            Console.WriteLine($"{assemblyName} is installed.");
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine($"{assemblyName} is not installed.");
+        }
+        
+
+    }
+}

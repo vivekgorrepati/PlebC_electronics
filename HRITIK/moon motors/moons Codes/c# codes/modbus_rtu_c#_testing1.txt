@@ -1,0 +1,57 @@
+using System;
+using System.IO.Ports;
+using System.Threading;
+using Modbus.Device;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        using (SerialPort port = new SerialPort("COM15", 115200, Parity.None, 8, StopBits.One))
+        {
+            port.Open();
+
+            using (ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(port))
+            {
+                master.Transport.ReadTimeout = 500; // Adjust as needed
+
+                ushort[] registers = new ushort[2];
+
+                int[] angles = { 270, -270, 30, 270, -270, 180, 270, -270, 40, 270, -270, 270, -270, 270, -270, 0 };
+
+                for (int i = 0; i < angles.Length; i++)
+                {
+                    int angle = angles[i];
+                    Console.WriteLine($"Angle: {angle} time: {GetCurrentTime()}");
+
+                    int targetSteps = (int)((20000.0 / 360.0) * angle);
+                    int steps = targetSteps;
+
+                    registers[0] = (ushort)((steps >> 16) & 0xFFFF);
+                    registers[1] = (ushort)(steps & 0xFFFF);
+
+                    Console.WriteLine($"Before writing time: {GetCurrentTime()}");
+                    master.WriteMultipleRegisters(1, 30, registers);
+                    master.WriteSingleRegister(1, 124, 102); // Send command to control register
+                    Console.WriteLine($"After writing time: {GetCurrentTime()}");
+
+                    Thread.Sleep(350); // Adjust sleep duration as needed
+
+                    Console.WriteLine($"Before reading time: {GetCurrentTime()}");
+                    ushort[] readValues = master.ReadHoldingRegisters(1, 4, 2);
+                    Console.WriteLine($"After reading time: {GetCurrentTime()}");
+
+                    uint encoderValue = (uint)((readValues[0] << 16) | readValues[1]);
+                    Console.WriteLine($"Encoder value: {encoderValue} time: {GetCurrentTime()}");
+                    Console.WriteLine();
+                }
+            }
+        }
+    }
+
+    static string GetCurrentTime()
+    {
+        DateTime now = DateTime.Now;
+        return now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+    }
+}
