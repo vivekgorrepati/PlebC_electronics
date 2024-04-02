@@ -5,7 +5,7 @@ const int j1XPin = A0;
 const int j1YPin = A1;
 const int j2XPin = A2;
 const int j2YPin = A3;
-const int potPin = A4;
+const int potPin = A6;
 
 String gantryValue; // Global variable for gantryValue
 
