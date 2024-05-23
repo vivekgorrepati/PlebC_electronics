@@ -16,6 +16,7 @@ float x = 1000; // Acceleration value
 #define left_limit_pin 6
 
 AccelStepper xaxis(AccelStepper::DRIVER, xSTEP_PIN, xDIR_PIN);
+
   void xaxissetup(){
   
   xaxis.setMaxSpeed(5000.0); // Set the maximum speed of the stepper motor

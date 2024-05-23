@@ -8,7 +8,7 @@ unsigned long prevTime = millis(); // Variable to store the previous time
 
 
 void setup() {
-   Serial.begin(9600);
+  Serial.begin(9600);
   xaxissetup();
   yaxissetup();
   zaxissetup();
