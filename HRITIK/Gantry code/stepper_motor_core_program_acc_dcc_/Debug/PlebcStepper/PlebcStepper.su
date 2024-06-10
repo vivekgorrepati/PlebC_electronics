@@ -1,0 +1,11 @@
+../PlebcStepper/PlebcStepper.c:12:6:setMaxSpeed	16	static
+../PlebcStepper/PlebcStepper.c:16:6:setAcceleration	16	static
+../PlebcStepper/PlebcStepper.c:20:6:setRPM	24	static
+../PlebcStepper/PlebcStepper.c:25:15:computeNewSpeed	8	static
+../PlebcStepper/PlebcStepper.c:39:6:microDelay	16	static
+../PlebcStepper/PlebcStepper.c:44:6:motorRunForward	24	static
+../PlebcStepper/PlebcStepper.c:62:6:motorRunBackward	24	static
+../PlebcStepper/PlebcStepper.c:80:6:motorRunContinuous	24	static
+../PlebcStepper/PlebcStepper.c:98:6:motorMove	24	static
+../PlebcStepper/PlebcStepper.c:127:6:motorStop	24	static
+../PlebcStepper/PlebcStepper.c:145:6:emergencyMotorStop	16	static
