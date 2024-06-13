@@ -1,0 +1,11 @@
+modbus_rtu_slave.c:57:6:sendData	1
+modbus_rtu_slave.c:73:10:crc16	4
+modbus_rtu_slave.c:88:6:modbusException	1
+modbus_rtu_slave.c:95:9:readHoldingRegs	5
+modbus_rtu_slave.c:124:9:readInputRegs	5
+modbus_rtu_slave.c:154:9:readCoils	8
+modbus_rtu_slave.c:195:9:writeSingleHoldingReg	2
+modbus_rtu_slave.c:217:9:writeHoldingRegs	5
+modbus_rtu_slave.c:249:9:writeSingleCoil	6
+modbus_rtu_slave.c:279:9:writeMultiCoils	9
+modbus_rtu_slave.c:326:6:HAL_UARTEx_RxEventCallback	13
