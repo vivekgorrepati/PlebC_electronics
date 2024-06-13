@@ -1,0 +1,11 @@
+../MODBUS/modbus_rtu_slave.c:57:6:sendData	24	static
+../MODBUS/modbus_rtu_slave.c:73:10:crc16	24	static
+../MODBUS/modbus_rtu_slave.c:88:6:modbusException	16	static
+../MODBUS/modbus_rtu_slave.c:95:9:readHoldingRegs	32	static
+../MODBUS/modbus_rtu_slave.c:124:9:readInputRegs	32	static
+../MODBUS/modbus_rtu_slave.c:154:9:readCoils	40	static
+../MODBUS/modbus_rtu_slave.c:195:9:writeSingleHoldingReg	16	static
+../MODBUS/modbus_rtu_slave.c:217:9:writeHoldingRegs	24	static
+../MODBUS/modbus_rtu_slave.c:249:9:writeSingleCoil	24	static
+../MODBUS/modbus_rtu_slave.c:279:9:writeMultiCoils	48	static
+../MODBUS/modbus_rtu_slave.c:326:6:HAL_UARTEx_RxEventCallback	24	static
