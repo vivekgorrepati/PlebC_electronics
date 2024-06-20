@@ -18,7 +18,7 @@ uint8_t TxData[256];
 // Databases for holding registers and coils
 // Holding Registers (40001 - 49999): These are registers used for read and write operations.
 uint16_t Holding_Registers_Database[MAX_HOLDING_REGISTERS] = {
-    0000,  1111,  2222,  3333,  4444,  5555,  6666,  7777,  8888,  9999,
+    50,  20,  6.3,  6400,  0,  0,  0,  7777,  8888,  9999,
     12345, 15432, 15535, 10234, 19876, 13579, 10293, 19827, 13456, 14567,
     21345, 22345, 24567, 25678, 26789, 24680, 20394, 29384, 26937, 27654,
     31245, 31456, 34567, 35678, 36789, 37890, 30948, 34958, 35867, 36092,
@@ -26,7 +26,7 @@ uint16_t Holding_Registers_Database[MAX_HOLDING_REGISTERS] = {
 };
 // Input Registers (30001 - 39999): These are read-only registers.
 uint16_t Input_Registers_Database[MAX_INPUT_REGISTERS] = {
-    0000,  0000,  7777,  6666,  5555,  5555,  6666,  7777,  8888,  9999,
+    0,  0,  0,  0,  5555,  5555,  6666,  7777,  8888,  9999,
     12345, 15432, 15535, 10234, 19876, 13579, 10293, 19827, 13456, 14567,
     21345, 22345, 24567, 25678, 26789, 24680, 20394, 29384, 26937, 27654,
     31245, 31456, 34567, 35678, 36789, 37890, 30948, 34958, 35867, 36092,

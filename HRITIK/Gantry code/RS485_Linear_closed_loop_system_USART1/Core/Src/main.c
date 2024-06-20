@@ -32,7 +32,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-int rpm = 50;
+volatile int rpm = 0;
 int motorSetSteps = 6400;
 
 volatile int lastEncoded = 0;
@@ -40,6 +40,7 @@ volatile long encoderValue = 0;
 int lastMSB = 0;
 int lastLSB = 0;
 int prev_input_distance = 0;
+int prevstepsToMove=0;
 
 float prev_targetPosition = 0;
 int input_distance= 0;
@@ -63,7 +64,7 @@ int mm_in_1rev = 40; //distance covered on 1 revolution (in mm)(linear encoder)
 //  PA4 -> DRIVE_ENB
 //	PB0 -> ENCODER_A
 //	PB1 -> ENCODER_B
-//	PA4 -> LIMIT_SW
+//	PC1 -> LIMIT_SW
 //	PA9 -> USART1_TX
 //	PA10 -> USART1_RX
 //  PA8 -> DE_RE_Pin (DE,RE Pin of RS485 module)
@@ -180,6 +181,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start(&htim1);
   UART_StartReceive();
+
+  rpm = Holding_Registers_Database[0];
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -456,7 +459,11 @@ void homePosition(MotorConfig* motor) {
     }
     HAL_Delay(300);
     // move motor forward 3mm or 480 steps
+
+    HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_RESET);
     motorMove(motor, 480); // motor will move 3mm or 480 steps after hitting the limit switch
+    HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_SET);
+
     // Set encoder value to zero
     HAL_Delay(10);
     __disable_irq();
@@ -483,14 +490,15 @@ void StartMotorTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-
+	rpm = Holding_Registers_Database[0];
+	setRPM(rpm, motorSetSteps); // (RPM, Steps)
     // Disable interrupts and read the encoder value
 //    __disable_irq();
     currentPosition = encoderValue; // Read the latest encoder value
     //Input_Registers_Database[1] = currentPosition; // Store the encoder value in the first input register
 //    __enable_irq();
 
-    input_distance = Holding_Registers_Database[0];
+    input_distance = Holding_Registers_Database[4];
 
 
 	// Calculate target position with floating-point division
@@ -503,8 +511,23 @@ void StartMotorTask(void const * argument)
 	//stepsToMove = positionToMove * (motorSetSteps / (float)encoderPulseValue);
 	stepsToMove = positionToMove * (motorSetSteps / (float)enc_val_in_1rev);
 
+	if ((prev_input_distance != input_distance) || (prevstepsToMove != stepsToMove))
+	{
+	//Enable Drive
+	HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_RESET);
+	}
+
 	// Move motor
 	motorMove(&motor1, stepsToMove);
+
+	if ((prev_input_distance == input_distance) || (prevstepsToMove == stepsToMove))
+		{
+	//Disable Drive
+	HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_SET);
+		}
+
+	prev_input_distance = input_distance;
+	prevstepsToMove = stepsToMove;
 
 	osDelay(100);
   }
