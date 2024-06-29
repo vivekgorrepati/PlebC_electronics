@@ -22,7 +22,7 @@ typedef struct {
 void microDelay(uint16_t delay);
 void setMaxSpeed(float speed);
 void setAcceleration(float acceleration);
-void setRPM(float rpm, int steps);
+void setRPM(volatile float rpm, int steps);
 unsigned long computeNewSpeed(void);
 void motorRunForward(MotorConfig* motor);
 void motorRunBackward(MotorConfig* motor);

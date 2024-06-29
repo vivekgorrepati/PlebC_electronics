@@ -32,8 +32,6 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-volatile int rpm = 0;
-int motorSetSteps = 6400;
 
 volatile int lastEncoded = 0;
 volatile long encoderValue = 0;
@@ -41,6 +39,13 @@ int lastMSB = 0;
 int lastLSB = 0;
 int prev_input_distance = 0;
 int prevstepsToMove=0;
+
+volatile float rpm = 0; // Current RPM
+volatile float prev_rpm = 0;
+float acceleration = 0;
+float prev_acceleration = 0;
+int motorSetSteps = 0; // Steps per revolution of the motor
+
 
 float prev_targetPosition = 0;
 int input_distance= 0;
@@ -146,6 +151,16 @@ void UART_StartReceive(void)
 
 }
 
+int _write(int file, char *ptr, int len)
+{
+	int i = 0;
+	for(i=0; i<len; i++)
+
+		ITM_SendChar((*ptr++));
+
+	return len;
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -155,6 +170,10 @@ void UART_StartReceive(void)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	rpm = Holding_Registers_Database[0];
+	acceleration = Holding_Registers_Database[1];
+	motorSetSteps = Holding_Registers_Database[3];
+
 
   /* USER CODE END 1 */
 
@@ -182,7 +201,7 @@ int main(void)
   HAL_TIM_Base_Start(&htim1);
   UART_StartReceive();
 
-  rpm = Holding_Registers_Database[0];
+//  rpm = Holding_Registers_Database[0];
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -419,15 +438,9 @@ void StartEncoderTask(void const * argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
-//	uint16_t dumyValue = 1000;
+
   for(;;)
   {
-
-//	Input_Registers_Database[0] = dumyValue++;
-//	if(dumyValue == 10000)
-//	{
-//		dumyValue = 1000;
-//	}
 
 	Input_Registers_Database[0] = encoderValue; // Store the encoder value in the first input register
 	int distance_covered = encoderValue * (mm_in_1rev/enc_val_in_1rev);
@@ -446,6 +459,10 @@ void StartEncoderTask(void const * argument)
 
 // Function to initialize motor position
 void homePosition(MotorConfig* motor) {
+
+	setRPM(50, motorSetSteps); // (RPM, Steps)
+	setAcceleration(20.0f); // Set acceleration in steps per second^2
+
     // Move motor backward until limit switch is triggered
     while (HAL_GPIO_ReadPin(LIMIT_SW_GPIO_Port, LIMIT_SW_Pin) == GPIO_PIN_SET) {
     	// Calculate the new speed and step interval
@@ -480,23 +497,32 @@ void StartMotorTask(void const * argument)
   // Define motor configurations
   MotorConfig motor1 = {GPIOA, GPIO_PIN_1, GPIOA, GPIO_PIN_0};
 
-  // Setup stepper motor parameters
-  setRPM(rpm, motorSetSteps); // (RPM, Steps)
-  setAcceleration(20.0f); // Set acceleration in steps per second^2
-
   // Initialize motor position
    homePosition(&motor1);
 
   /* Infinite loop */
   for(;;)
   {
-	rpm = Holding_Registers_Database[0];
-	setRPM(rpm, motorSetSteps); // (RPM, Steps)
+	  //Reading RMP value  from RPM holding register
+	  rpm = Holding_Registers_Database[0];
+	  if(rpm != prev_rpm)
+	  {
+	  setRPM(rpm, motorSetSteps); // (RPM, Steps)
+	  prev_rpm = rpm;
+	  }
+
+	  //Reading acceleration value from acceleration holding register
+	  acceleration = Holding_Registers_Database[1];
+	  if(acceleration != prev_acceleration)
+	  {
+	   setAcceleration(acceleration);
+	   prev_acceleration = acceleration;
+	  }
+
     // Disable interrupts and read the encoder value
-//    __disable_irq();
+    //__disable_irq();
     currentPosition = encoderValue; // Read the latest encoder value
-    //Input_Registers_Database[1] = currentPosition; // Store the encoder value in the first input register
-//    __enable_irq();
+    //__enable_irq();
 
     input_distance = Holding_Registers_Database[4];
 
@@ -515,21 +541,18 @@ void StartMotorTask(void const * argument)
 	{
 	//Enable Drive
 	HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_RESET);
+
 	}
 
 	// Move motor
 	motorMove(&motor1, stepsToMove);
 
-	if ((prev_input_distance == input_distance) || (prevstepsToMove == stepsToMove))
-		{
-	//Disable Drive
-	HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_SET);
-		}
+
 
 	prev_input_distance = input_distance;
 	prevstepsToMove = stepsToMove;
 
-	osDelay(100);
+	osDelay(20);
   }
   /* USER CODE END StartMotorTask */
 }

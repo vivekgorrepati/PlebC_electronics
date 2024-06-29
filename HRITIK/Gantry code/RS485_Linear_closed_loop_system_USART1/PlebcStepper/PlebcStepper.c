@@ -1,13 +1,17 @@
 #include <PlebcStepper.h>
-
+#include <modbus_rtu_slave.h>
+#include <stdbool.h>
 // External TIM handle declared in main.c
 extern TIM_HandleTypeDef htim1;
 
 // Global variables
-static float _speed = 0.0;
-static float _acceleration = 0.0;
-static float _maxSpeed = 0.0;
-static long _stepInterval = 0;
+volatile float _speed = 0.0;
+volatile float _acceleration = 0.0;
+volatile float _maxSpeed = 0.0;
+volatile long _stepInterval = 0;
+
+bool motorStopReg = false;
+bool emergencyMotorStopReg = false;
 
 void microDelay(uint16_t delay) {
     __HAL_TIM_SET_COUNTER(&htim1, 0);
@@ -22,10 +26,28 @@ void setAcceleration(float acceleration) {
     _acceleration = acceleration;
 }
 
-void setRPM(float rpm, int steps) {
-    float speed = (rpm * (float)steps) / 60;
+void setRPM(volatile float rpm, int steps) {
+    volatile float speed = (rpm * steps) / 60.0f;
     _maxSpeed = speed;
+
+
 }
+
+//unsigned long computeNewSpeed() {
+//    if (_speed < _maxSpeed) {
+//        _speed += _acceleration;
+//        if (_speed > _maxSpeed) {
+//            _speed = _maxSpeed;
+//        }
+//    }
+//    // Calculate step interval in microseconds
+//    _stepInterval = (long)(1000000.0 / _speed);
+//
+//
+//
+//    return _stepInterval;
+//}
+
 
 unsigned long computeNewSpeed() {
     if (_speed < _maxSpeed) {
@@ -33,14 +55,17 @@ unsigned long computeNewSpeed() {
         if (_speed > _maxSpeed) {
             _speed = _maxSpeed;
         }
+    } else if (_speed > _maxSpeed) {
+        _speed -= _acceleration;
+        if (_speed < _maxSpeed) {
+            _speed = _maxSpeed;
+        }
     }
-
     // Calculate step interval in microseconds
     _stepInterval = (long)(1000000.0 / _speed);
 
     return _stepInterval;
 }
-
 
 void motorRunForward(MotorConfig* motor) {
 // Set direction pin for forward movement
@@ -112,8 +137,21 @@ void motorMove(MotorConfig* motor, int steps_to_move) {
 
     for(int i = 0; i < steps_to_move; i++)
     {
+    	motorStopReg = (bool) Holding_Registers_Database[5];
+    	emergencyMotorStopReg = (bool) Holding_Registers_Database[6];
+    	if (motorStopReg)
+    	{
+    		motorStop(motor);
+    		return;
+    	}
+    	if (emergencyMotorStopReg)
+		{
+			emergencyMotorStop(motor);
+			return;
+		}
         // Calculate the new speed and step interval
         unsigned long stepInterval = computeNewSpeed();
+
 
         // Generate a step pulse with the calculated interval
         HAL_GPIO_WritePin(motor->STEP_PORT, motor->STEP_PIN, GPIO_PIN_SET);
@@ -141,6 +179,8 @@ void motorStop(MotorConfig* motor) {
         HAL_GPIO_WritePin(motor->STEP_PORT, motor->STEP_PIN, GPIO_PIN_RESET);
         microDelay(stepInterval / 2);  // Half of the interval for the low pulse
     }
+    	// step pin is low after stopping
+        HAL_GPIO_WritePin(motor->STEP_PORT, motor->STEP_PIN, GPIO_PIN_RESET);
 }
 
 void emergencyMotorStop(MotorConfig* motor) {

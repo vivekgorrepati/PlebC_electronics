@@ -17,6 +17,15 @@ uint8_t TxData[256];
 
 // Databases for holding registers and coils
 // Holding Registers (40001 - 49999): These are registers used for read and write operations.
+/*
+{
+    rpm,  velocity,  pulley Diameter,  Motor Steps,  Input Distance,  motor stop,  emergency stop,  none,  none,  none,
+    none, none, none, none, none, none, none, none, none, none,
+    none, none, none, none, none, none, none, none, none, none,
+    none, none, none, none, none, none, none, none, none, none,
+    none, none, none, none, none, none, none, none, none, none
+};
+*/
 uint16_t Holding_Registers_Database[MAX_HOLDING_REGISTERS] = {
     50,  20,  6.3,  6400,  0,  0,  0,  7777,  8888,  9999,
     12345, 15432, 15535, 10234, 19876, 13579, 10293, 19827, 13456, 14567,
@@ -24,7 +33,17 @@ uint16_t Holding_Registers_Database[MAX_HOLDING_REGISTERS] = {
     31245, 31456, 34567, 35678, 36789, 37890, 30948, 34958, 35867, 36092,
     45678, 46789, 47890, 41235, 42356, 43567, 40596, 49586, 48765, 41029
 };
+
 // Input Registers (30001 - 39999): These are read-only registers.
+/*
+ * {
+		Current Encoder value,  Current Distance,  Current Speed,  Current velocity,  none,  none,  none,  none,  none,  none,
+		none, none, none, none, none, none, none, none, none, none,
+		none, none, none, none, none, none, none, none, none, none,
+		none, none, none, none, none, none, none, none, none, none,
+		none, none, none, none, none, none, none, none, none, none
+	};
+*/
 uint16_t Input_Registers_Database[MAX_INPUT_REGISTERS] = {
     0,  0,  0,  0,  5555,  5555,  6666,  7777,  8888,  9999,
     12345, 15432, 15535, 10234, 19876, 13579, 10293, 19827, 13456, 14567,
