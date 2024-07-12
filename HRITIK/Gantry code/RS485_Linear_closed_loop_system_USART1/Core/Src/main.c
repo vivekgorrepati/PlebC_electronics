@@ -46,6 +46,9 @@ float acceleration = 0;
 float prev_acceleration = 0;
 int motorSetSteps = 0; // Steps per revolution of the motor
 
+int distance = 0;
+int prev_distance = 0;
+
 
 float prev_targetPosition = 0;
 int input_distance= 0;
@@ -54,8 +57,15 @@ long int currentPosition = 0;
 float targetPosition = 0;
 long int positionToMove = 0;
 int stepsToMove = 0;
-float enc_val_in_1rev = 1130.00; //linear encoder values in 1 revolution
-int mm_in_1rev = 40; //distance covered on 1 revolution (in mm)(linear encoder)
+float enc_val_in_1rev = 1130.00; //linear encoder values in 1 revolution - test bench
+float mm_in_1rev = 40.00; //distance covered on 1 revolution (in mm)(linear encoder) - test bench
+
+//float enc_val_in_1rev = 2848.00; //linear encoder values in 1 revolution - x-axis
+//float mm_in_1rev = 100.00; //distance covered on 1 revolution (in mm)(linear encoder) - x-axis
+
+//float enc_val_in_1rev = 3550.00; //linear encoder values in 1 revolution - z-axis
+//float mm_in_1rev = 125.00; //distance covered on 1 revolution (in mm)(linear encoder) - z-axis
+
 
 
 /* USER CODE END PTD */
@@ -73,9 +83,6 @@ int mm_in_1rev = 40; //distance covered on 1 revolution (in mm)(linear encoder)
 //	PA9 -> USART1_TX
 //	PA10 -> USART1_RX
 //  PA8 -> DE_RE_Pin (DE,RE Pin of RS485 module)
-
-
-
 
 /* User Instructions */
 
@@ -437,6 +444,9 @@ static void MX_GPIO_Init(void)
 void StartEncoderTask(void const * argument)
 {
   /* USER CODE BEGIN 5 */
+	// Define motor configurations
+//	  MotorConfig motor1 = {GPIOA, GPIO_PIN_1, GPIOA, GPIO_PIN_0};
+
   /* Infinite loop */
 
   for(;;)
@@ -445,6 +455,7 @@ void StartEncoderTask(void const * argument)
 	Input_Registers_Database[0] = encoderValue; // Store the encoder value in the first input register
 	int distance_covered = encoderValue * (mm_in_1rev/enc_val_in_1rev);
 	Input_Registers_Database[1] = distance_covered; // Store the encoder value in the first input register
+	distance = Holding_Registers_Database[4];
     osDelay(20);
   }
   /* USER CODE END 5 */
@@ -460,8 +471,8 @@ void StartEncoderTask(void const * argument)
 // Function to initialize motor position
 void homePosition(MotorConfig* motor) {
 
-	setRPM(50, motorSetSteps); // (RPM, Steps)
-	setAcceleration(20.0f); // Set acceleration in steps per second^2
+	setRPM(30, motorSetSteps); // (RPM, Driver Steps)
+	setAcceleration(5.0f); // Set acceleration in steps per second^2
 
     // Move motor backward until limit switch is triggered
     while (HAL_GPIO_ReadPin(LIMIT_SW_GPIO_Port, LIMIT_SW_Pin) == GPIO_PIN_SET) {
@@ -478,7 +489,7 @@ void homePosition(MotorConfig* motor) {
     // move motor forward 3mm or 480 steps
 
     HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_RESET);
-    motorMove(motor, 480); // motor will move 3mm or 480 steps after hitting the limit switch
+    motorMove(motor, 160*3); // motor will move 3mm or 480 steps after hitting the limit switch, 1mm = 160 steps
     HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_SET);
 
     // Set encoder value to zero
@@ -534,19 +545,24 @@ void StartMotorTask(void const * argument)
 	positionToMove = (long int)targetPosition - currentPosition; // in encoder value
 
 	// Calculate steps to move
-	//stepsToMove = positionToMove * (motorSetSteps / (float)encoderPulseValue);
 	stepsToMove = positionToMove * (motorSetSteps / (float)enc_val_in_1rev);
 
 	if ((prev_input_distance != input_distance) || (prevstepsToMove != stepsToMove))
 	{
 	//Enable Drive
 	HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_RESET);
+	// Move motor
+		motorMove(&motor1, stepsToMove);
 
 	}
 
-	// Move motor
-	motorMove(&motor1, stepsToMove);
 
+
+	if ((prev_input_distance == input_distance) || (prevstepsToMove == stepsToMove))
+	{
+		//Disable Drive
+		HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_SET);
+	}
 
 
 	prev_input_distance = input_distance;

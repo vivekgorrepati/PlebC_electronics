@@ -6,7 +6,9 @@
 #include "stm32f4xx_hal.h"
 
 // Modbus RTU Slave ID
-#define SLAVE_ID 1
+#define SLAVE_ID 1 		// Z-axis
+//#define SLAVE_ID 2		// X-axis
+//#define SLAVE_ID 3		// Y-axis
 
 #define RX_BUFFER_SIZE 256
 

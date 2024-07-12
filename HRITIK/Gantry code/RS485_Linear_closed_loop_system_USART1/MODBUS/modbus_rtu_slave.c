@@ -19,7 +19,7 @@ uint8_t TxData[256];
 // Holding Registers (40001 - 49999): These are registers used for read and write operations.
 /*
 {
-    rpm,  velocity,  pulley Diameter,  Motor Steps,  Input Distance,  motor stop,  emergency stop,  none,  none,  none,
+    rpm[0],  velocity[1],  pulley Diameter(2),  Motor Steps(3),  Input Distance(4),  motor stop(5),  emergency stop(6),  none,  none,  none,
     none, none, none, none, none, none, none, none, none, none,
     none, none, none, none, none, none, none, none, none, none,
     none, none, none, none, none, none, none, none, none, none,
@@ -27,7 +27,7 @@ uint8_t TxData[256];
 };
 */
 uint16_t Holding_Registers_Database[MAX_HOLDING_REGISTERS] = {
-    50,  20,  6.3,  6400,  0,  0,  0,  7777,  8888,  9999,
+    50,  10,  6.3, 6400,  0,  0,  0,  7777,  8888,  9999,
     12345, 15432, 15535, 10234, 19876, 13579, 10293, 19827, 13456, 14567,
     21345, 22345, 24567, 25678, 26789, 24680, 20394, 29384, 26937, 27654,
     31245, 31456, 34567, 35678, 36789, 37890, 30948, 34958, 35867, 36092,
@@ -45,7 +45,7 @@ uint16_t Holding_Registers_Database[MAX_HOLDING_REGISTERS] = {
 	};
 */
 uint16_t Input_Registers_Database[MAX_INPUT_REGISTERS] = {
-    0,  0,  0,  0,  5555,  5555,  6666,  7777,  8888,  9999,
+    00000, 00000, 00000, 00000, 00000, 55555,  6666,  7777,  8888,  9999,
     12345, 15432, 15535, 10234, 19876, 13579, 10293, 19827, 13456, 14567,
     21345, 22345, 24567, 25678, 26789, 24680, 20394, 29384, 26937, 27654,
     31245, 31456, 34567, 35678, 36789, 37890, 30948, 34958, 35867, 36092,
