@@ -27,6 +27,7 @@ unsigned long computeNewSpeed(void);
 void motorRunForward(MotorConfig* motor);
 void motorRunBackward(MotorConfig* motor);
 void motorRunContinuous(MotorConfig* motor);
+void HomeMotorMove(MotorConfig* motor, int steps_to_move);
 void motorMove(MotorConfig* motor, int steps_to_move);
 void motorStop(MotorConfig* motor);
 void emergencyMotorStop(MotorConfig* motor);

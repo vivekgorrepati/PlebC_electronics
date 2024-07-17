@@ -9,7 +9,7 @@ main.c:308:13:MX_TIM1_Init	4
 main.c:354:13:MX_USART1_UART_Init	2
 main.c:387:13:MX_GPIO_Init	1
 main.c:444:6:StartEncoderTask	1
-main.c:472:6:homePosition	2
-main.c:504:6:StartMotorTask	7
-main.c:584:6:HAL_TIM_PeriodElapsedCallback	2
-main.c:601:6:Error_Handler	1
+main.c:473:6:homePosition	2
+main.c:505:6:StartMotorTask	7
+main.c:585:6:HAL_TIM_PeriodElapsedCallback	2
+main.c:602:6:Error_Handler	1
