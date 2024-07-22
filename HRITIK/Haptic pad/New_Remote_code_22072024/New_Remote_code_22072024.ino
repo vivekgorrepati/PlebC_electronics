@@ -42,37 +42,25 @@ void loop() {
 void handleJoystickMovement(int value, int &number, char axis, int velocity) {
   int prevNumber = number; // Store previous number value
 
-  float Delay1 = ((1.0 / velocity) * 1000);
-  float Delay2 = ((5.0 / velocity) * 1000);
-
+  float Delay = ((1.0 / velocity) * 1000);
+  
   // Update number based on joystick value
-  if (value > 600 && value < 1000) {
+  if (value > 600 && value <= 1023) {
     number++;
-    delay(Delay1);
+    delay(Delay);
     
     if (number > 800) number = 800;  // Ensure number stays within the range
   } 
-  else if (value > 1000 && value <= 1023) {
-    number += 5;
-    delay(Delay2);
-    
-    if (number > 800) number = 800;  // Ensure number stays within the range
-  } 
-  else if (value > 50 && value < 420) {
+  
+  else if (value >= 0 && value < 420) {
     number--;
-    delay(Delay1);
+    delay(Delay);
     
     if (number < 0) number = 0;  // Ensure number stays within the range
   } 
-  else if (value >= 0 && value < 50) {
-    number -= 5;
-    delay(Delay2);
-   
-    if (number < 0) number = 0;  // Ensure number stays within the range
-  }
-
+  
   // Print only if the number has changed and the joystick is not in neutral position
-  if (number != prevNumber && (value < 480 || value > 540)) {
+  if (number != prevNumber && (value < 420 || value > 600)) {
     Serial.print(axis);
     Serial.print(" : ");
     Serial.println(number);
