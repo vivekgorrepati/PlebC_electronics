@@ -42,8 +42,10 @@ int lastLSB = 0;
 int prev_input_distance = 0;
 int prevstepsToMove=0;
 
+volatile float velocity = 0.00;
 volatile float rpm = 0; // Current RPM
 volatile float prev_rpm = 0;
+volatile float pully_dia = 0;
 
 float acceleration = 0;
 float prev_acceleration = 0;
@@ -57,11 +59,17 @@ long int currentPosition = 0;
 float targetPosition = 0;
 long int positionToMove = 0;
 int stepsToMove = 0;
-//float enc_val_in_1rev = 1130.00; //linear encoder values in 1 revolution - test bench
-//float mm_in_1rev = 40.00; //distance covered on 1 revolution (in mm)(linear encoder) - test bench
 
-float enc_val_in_1rev = 2848.00; //linear encoder values in 1 revolution - x-axis
-float mm_in_1rev = 100.00; //distance covered on 1 revolution (in mm)(linear encoder) - x-axis
+//For calculating RPM
+volatile long encoderPulses = 0;
+#define PULSES_PER_REVOLUTION 1130 // Set this to your encoder's pulses per revolution
+float speed = 0.00;
+
+float enc_val_in_1rev = 1130.00; //linear encoder values in 1 revolution - test bench
+float mm_in_1rev = 40.00; //distance covered on 1 revolution (in mm)(linear encoder) - test bench
+
+//float enc_val_in_1rev = 2848.00; //linear encoder values in 1 revolution - x-axis
+//float mm_in_1rev = 100.00; //distance covered on 1 revolution (in mm)(linear encoder) - x-axis
 
 //float enc_val_in_1rev = 3550.00; //linear encoder values in 1 revolution - z-axis
 //float mm_in_1rev = 125.00; //distance covered on 1 revolution (in mm)(linear encoder) - z-axis
@@ -133,9 +141,16 @@ void updateEncoder(void)
   int sum = (lastEncoded << 2) | encoded;
 
   if (sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011)
+  {
     encoderValue++;
+    encoderPulses++;
+  }
+
   if (sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000)
+  {
     encoderValue--;
+    encoderPulses++;
+  }
 
   lastEncoded = encoded;
 }
@@ -168,6 +183,8 @@ int _write(int file, char *ptr, int len)
 	return len;
 }
 
+
+
 /* USER CODE END 0 */
 
 /**
@@ -177,8 +194,9 @@ int _write(int file, char *ptr, int len)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	rpm = Holding_Registers_Database[0];
+	velocity = Holding_Registers_Database[0];
 	acceleration = Holding_Registers_Database[1];
+	pully_dia = Holding_Registers_Database[2];
 	motorSetSteps = Holding_Registers_Database[3];
 
 
@@ -208,7 +226,6 @@ int main(void)
   HAL_TIM_Base_Start(&htim1);
   UART_StartReceive();
 
-//  rpm = Holding_Registers_Database[0];
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -319,7 +336,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 90;
+  htim1.Init.Prescaler = 100-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 65535;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -444,10 +461,7 @@ static void MX_GPIO_Init(void)
 void StartEncoderTask(void const * argument)
 {
   /* USER CODE BEGIN 5 */
-	// Define motor configurations
-//	  MotorConfig motor1 = {GPIOA, GPIO_PIN_1, GPIOA, GPIO_PIN_0};
-//	int distance = Holding_Registers_Database[4];
-//	int prev_distance = Holding_Registers_Database[4];
+
   /* Infinite loop */
 
   for(;;)
@@ -457,7 +471,8 @@ void StartEncoderTask(void const * argument)
 	int distance_covered = encoderValue * (mm_in_1rev/enc_val_in_1rev);
 	Input_Registers_Database[1] = distance_covered; // Store the encoder value in the first input register
 
-    osDelay(20);
+
+    osDelay(5);
   }
   /* USER CODE END 5 */
 }
@@ -472,7 +487,7 @@ void StartEncoderTask(void const * argument)
 // Function to initialize motor position
 void homePosition(MotorConfig* motor) {
 
-	setRPM(8, motorSetSteps); // (RPM, Driver Steps)
+	setRPM(15, motorSetSteps); // (RPM, Driver Steps)
 	setAcceleration(5.0f); // Set acceleration in steps per second^2
 
     // Move motor backward until limit switch is triggered
@@ -490,7 +505,8 @@ void homePosition(MotorConfig* motor) {
     // move motor forward 3mm or 480 steps
 
     HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_RESET);
-    HomeMotorMove(motor, 160*10); // motor will move 3mm or 480 steps after hitting the limit switch, 1mm = 160 steps
+    HomeMotorMove(motor, 160*3); // motor will move 3mm or 480 steps after hitting the limit switch, 1mm = 160 steps
+//    HomeMotorMove(motor, 160*10);
     HAL_GPIO_WritePin(GPIOA, DRIVE_ENB_Pin, GPIO_PIN_SET);
 
     // Set encoder value to zero
@@ -516,7 +532,9 @@ void StartMotorTask(void const * argument)
   for(;;)
   {
 	  //Reading RMP value  from RPM holding register
-	  rpm = Holding_Registers_Database[0];
+	  velocity = Holding_Registers_Database[0];
+	  pully_dia = Holding_Registers_Database[2];
+	  rpm = (840*velocity)/(44*pully_dia);
 	  if(rpm != prev_rpm)
 	  {
 	  setRPM(rpm, motorSetSteps); // (RPM, Steps)
@@ -569,7 +587,7 @@ void StartMotorTask(void const * argument)
 	prev_input_distance = input_distance;
 	prevstepsToMove = stepsToMove;
 
-	osDelay(20);
+	osDelay(5);
   }
   /* USER CODE END StartMotorTask */
 }
@@ -585,13 +603,13 @@ void StartMotorTask(void const * argument)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
-
+//
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM2) {
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-
+//
   /* USER CODE END Callback 1 */
 }
 

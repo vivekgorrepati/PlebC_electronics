@@ -10,6 +10,7 @@
 //#define SLAVE_ID 2		// X-axis
 //#define SLAVE_ID 3		// Y-axis
 
+
 #define RX_BUFFER_SIZE 256
 
 

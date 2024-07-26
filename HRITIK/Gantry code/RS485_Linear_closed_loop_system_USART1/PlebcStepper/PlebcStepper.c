@@ -23,6 +23,9 @@ extern float enc_val_in_1rev ; //linear encoder values in 1 revolution - test be
 extern float mm_in_1rev ; //distance covered on 1 revolution (in mm)(linear encoder) - test bench
 extern int rpm;
 extern int prev_rpm;
+extern volatile float velocity;
+extern float pully_dia;
+
 // External TIM handle declared in main.c
 extern TIM_HandleTypeDef htim1;
 
@@ -157,47 +160,7 @@ void HomeMotorMove(MotorConfig* motor, int steps_to_move) {
     }
 }
 
-//void motorMove(MotorConfig* motor, int steps_to_move) {
-//
-//    // Set direction based on the steps_to_move value
-//    if (steps_to_move > 0) {
-//        HAL_GPIO_WritePin(motor->DIR_PORT, motor->DIR_PIN, GPIO_PIN_SET);  // Set direction for forward movement
-//    } else {
-//        HAL_GPIO_WritePin(motor->DIR_PORT, motor->DIR_PIN, GPIO_PIN_RESET);  // Set direction for backward movement
-//        steps_to_move = -steps_to_move; // Convert steps_to_move to positive value
-//    }
-//
-//    for (int i = 0; i < steps_to_move; i++) {
-//        motorStopReg = (bool) Holding_Registers_Database[5];
-//        emergencyMotorStopReg = (bool) Holding_Registers_Database[6];
-//
-//        if (motorStopReg) {
-////            printf("Motor stopped by motorStopReg.\n");
-//            motorStop(motor);
-//            break;  // Exit the loop on motor stop condition
-//        }
-//
-//        if (emergencyMotorStopReg) {
-//            printf("Motor stopped by emergencyMotorStopReg.\n");
-//            emergencyMotorStop(motor);
-//            break;  // Exit the loop on emergency stop condition
-//        }
-//
-//        // Calculate the new speed and step interval
-//        unsigned long stepInterval = computeNewSpeed();
-//
-//        // Generate a step pulse with the calculated interval
-//        HAL_GPIO_WritePin(motor->STEP_PORT, motor->STEP_PIN, GPIO_PIN_SET);
-//        microDelay(stepInterval / 2);  // High pulse duration
-//        HAL_GPIO_WritePin(motor->STEP_PORT, motor->STEP_PIN, GPIO_PIN_RESET);
-//        microDelay(stepInterval / 2);  // Low pulse duration
-//    }
-//
-//    // Resetting stop flags after movement
-//    Holding_Registers_Database[5] = 0;
-//    Holding_Registers_Database[6] = 0;
-//
-//}
+
 
 
 void motorMove(MotorConfig* motor, int steps_to_move) {
@@ -214,7 +177,7 @@ void motorMove(MotorConfig* motor, int steps_to_move) {
     }
 
     while (current_step < steps_to_move) {
-//        motorStopReg = (bool) Holding_Registers_Database[5];
+        motorStopReg = (bool) Holding_Registers_Database[5];
         emergencyMotorStopReg = (bool) Holding_Registers_Database[6];
 
         if (motorStopReg) {
@@ -230,10 +193,12 @@ void motorMove(MotorConfig* motor, int steps_to_move) {
         }
 
         //Reading RMP value  from RPM holding register
-		  rpm = Holding_Registers_Database[0];
+          velocity = Holding_Registers_Database[0];
+          rpm = (840*velocity)/(44 * (float)pully_dia);
 		  if(rpm != prev_rpm)
 		  {
 		  setRPM(rpm, motorSetSteps); // (RPM, Steps)
+		  setAcceleration(rpm/4);
 		  prev_rpm = rpm;
 		  }
 
@@ -289,26 +254,7 @@ void motorMove(MotorConfig* motor, int steps_to_move) {
 }
 
 
-//void motorStop(MotorConfig* motor) {
-//    while (_speed > 0) {
-//        _speed -= _acceleration;
-//        if (_speed < 0) {
-//            _speed = 0;
-//        }
-//
-//        // Calculate the new step interval for deceleration
-//        unsigned long stepInterval = computeNewSpeed();
-//
-//        // Generate a step pulse with the calculated interval
-//        HAL_GPIO_WritePin(motor->STEP_PORT, motor->STEP_PIN, GPIO_PIN_SET);
-//        microDelay(stepInterval / 2);  // Half of the interval for the high pulse
-//        HAL_GPIO_WritePin(motor->STEP_PORT, motor->STEP_PIN, GPIO_PIN_RESET);
-//        microDelay(stepInterval / 2);  // Half of the interval for the low pulse
-//    }
-//    	// step pin is low after stopping
-//        HAL_GPIO_WritePin(motor->STEP_PORT, motor->STEP_PIN, GPIO_PIN_RESET);
-//        Holding_Registers_Database[4] = Input_Registers_Database[1];
-//}
+
 void motorStop(MotorConfig* motor) {
 
     // Ensure the step pin is low
