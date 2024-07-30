@@ -1,0 +1,12 @@
+core_cm4.h:2059:26:ITM_SendChar	4
+main.c:89:5:_write	2
+main.c:101:19:BNO055_WriteReg	1
+main.c:105:19:BNO055_ReadRegs	1
+main.c:109:19:BNO055_Init	4
+main.c:148:19:BNO055_ReadQuaternion	2
+main.c:177:5:main	4
+main.c:289:6:SystemClock_Config	4
+main.c:339:13:MX_I2C1_Init	4
+main.c:387:13:MX_USART2_UART_Init	2
+main.c:422:13:MX_GPIO_Init	1
+main.c:451:6:Error_Handler	1

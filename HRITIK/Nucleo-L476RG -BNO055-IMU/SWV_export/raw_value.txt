@@ -1,0 +1,317 @@
+SWV ITM Data Console - ITM Port: 0
+BNO055 initialized successfully
+Calibration Status: 0
+Accelerometer: X=0, Y=0, Z=0
+Quaternion: W=0.0000, X=0.0000, Y=0.0000, Z=0.0000
+Calibration Status: 48
+Accelerometer: X=-5, Y=-434, Z=-903
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-425, Z=-887
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-424, Z=-886
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-6, Y=-422, Z=-885
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-6, Y=-424, Z=-887
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-5, Y=-423, Z=-885
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-423, Z=-886
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-424, Z=-888
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-425, Z=-883
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-424, Z=-885
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-424, Z=-888
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-425, Z=-887
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-424, Z=-888
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-424, Z=-884
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-423, Z=-885
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-428, Z=-890
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-423, Z=-885
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-424, Z=-884
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-2, Y=-424, Z=-884
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-425, Z=-885
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-5, Y=-425, Z=-886
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-425, Z=-884
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-5, Y=-424, Z=-887
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-423, Z=-885
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-5, Y=-423, Z=-885
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-424, Z=-886
+Quaternion: W=3630.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-1, Y=-423, Z=-887
+Quaternion: W=3629.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-5, Y=-424, Z=-887
+Quaternion: W=3629.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-426, Z=-884
+Quaternion: W=3629.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-422, Z=-885
+Quaternion: W=3629.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-5, Y=-425, Z=-888
+Quaternion: W=3629.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-4, Y=-423, Z=-889
+Quaternion: W=3629.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-3, Y=-422, Z=-885
+Quaternion: W=3629.0000, X=-15976.0000, Y=136.0000, Z=1.0000
+Calibration Status: 52
+Accelerometer: X=-21, Y=92, Z=-1003
+Quaternion: W=-604.0000, X=-16301.0000, Y=-1476.0000, Z=417.0000
+Calibration Status: 52
+Accelerometer: X=-56, Y=586, Z=-714
+Quaternion: W=-5659.0000, X=-14957.0000, Y=-3464.0000, Z=-845.0000
+Calibration Status: 53
+Accelerometer: X=17, Y=-888, Z=-516
+Quaternion: W=7976.0000, X=-14178.0000, Y=-1736.0000, Z=893.0000
+Calibration Status: 53
+Accelerometer: X=124, Y=-323, Z=-856
+Quaternion: W=2280.0000, X=-16167.0000, Y=-1273.0000, Z=-493.0000
+Calibration Status: 55
+Accelerometer: X=907, Y=230, Z=-125
+Quaternion: W=-9556.0000, X=-8158.0000, Y=9429.0000, Z=-4653.0000
+Calibration Status: 247
+Accelerometer: X=259, Y=76, Z=-1006
+Quaternion: W=-1890.0000, X=-10616.0000, Y=12331.0000, Z=-325.0000
+Calibration Status: 247
+Accelerometer: X=741, Y=-142, Z=-489
+Quaternion: W=-4576.0000, X=-9596.0000, Y=11330.0000, Z=-5199.0000
+Calibration Status: 183
+Accelerometer: X=16, Y=-62, Z=-869
+Quaternion: W=2544.0000, X=-11269.0000, Y=11616.0000, Z=200.0000
+Calibration Status: 183
+Accelerometer: X=-6, Y=-177, Z=-952
+Quaternion: W=1182.0000, X=-10156.0000, Y=12752.0000, Z=-1130.0000
+Calibration Status: 247
+Accelerometer: X=-8, Y=-178, Z=-952
+Quaternion: W=1131.0000, X=-10448.0000, Y=12518.0000, Z=-1139.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-179, Z=-955
+Quaternion: W=1127.0000, X=-10489.0000, Y=12486.0000, Z=-1108.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-178, Z=-953
+Quaternion: W=1189.0000, X=-10490.0000, Y=12482.0000, Z=-1086.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-180, Z=-953
+Quaternion: W=1130.0000, X=-10522.0000, Y=12460.0000, Z=-1094.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-178, Z=-951
+Quaternion: W=1092.0000, X=-10485.0000, Y=12498.0000, Z=-1055.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-176, Z=-951
+Quaternion: W=1064.0000, X=-10545.0000, Y=12446.0000, Z=-1095.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-175, Z=-955
+Quaternion: W=1030.0000, X=-10504.0000, Y=12481.0000, Z=-1134.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-178, Z=-953
+Quaternion: W=1077.0000, X=-10454.0000, Y=12519.0000, Z=-1122.0000
+Calibration Status: 247
+Accelerometer: X=-9, Y=-176, Z=-952
+Quaternion: W=1088.0000, X=-10519.0000, Y=12455.0000, Z=-1217.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-178, Z=-954
+Quaternion: W=1044.0000, X=-10533.0000, Y=12446.0000, Z=-1216.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-178, Z=-954
+Quaternion: W=1044.0000, X=-10555.0000, Y=12431.0000, Z=-1186.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-177, Z=-954
+Quaternion: W=1063.0000, X=-10518.0000, Y=12463.0000, Z=-1168.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-176, Z=-954
+Quaternion: W=1089.0000, X=-10457.0000, Y=12516.0000, Z=-1118.0000
+Calibration Status: 247
+Accelerometer: X=-5, Y=-174, Z=-952
+Quaternion: W=1087.0000, X=-10519.0000, Y=12469.0000, Z=-1067.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-176, Z=-953
+Quaternion: W=1161.0000, X=-10546.0000, Y=12435.0000, Z=-1109.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-175, Z=-956
+Quaternion: W=1163.0000, X=-10540.0000, Y=12445.0000, Z=-1050.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-174, Z=-954
+Quaternion: W=1115.0000, X=-10616.0000, Y=12380.0000, Z=-1109.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-174, Z=-956
+Quaternion: W=1059.0000, X=-10556.0000, Y=12437.0000, Z=-1105.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-176, Z=-953
+Quaternion: W=1148.0000, X=-10474.0000, Y=12504.0000, Z=-1036.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-175, Z=-954
+Quaternion: W=1077.0000, X=-10463.0000, Y=12513.0000, Z=-1107.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-176, Z=-953
+Quaternion: W=1135.0000, X=-10484.0000, Y=12486.0000, Z=-1149.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-116, Z=-962
+Quaternion: W=776.0000, X=-10571.0000, Y=12470.0000, Z=-763.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-114, Z=-960
+Quaternion: W=682.0000, X=-10610.0000, Y=12444.0000, Z=-745.0000
+Calibration Status: 247
+Accelerometer: X=-7, Y=-116, Z=-959
+Quaternion: W=730.0000, X=-10623.0000, Y=12433.0000, Z=-678.0000
+Calibration Status: 247
+Accelerometer: X=-8, Y=-114, Z=-959
+Quaternion: W=783.0000, X=-10597.0000, Y=12454.0000, Z=-654.0000
+Calibration Status: 247
+Accelerometer: X=-6, Y=-112, Z=-959
+Quaternion: W=747.0000, X=-10585.0000, Y=12468.0000, Z=-623.0000
+Calibration Status: 247
+Accelerometer: X=-4, Y=-114, Z=-961
+Quaternion: W=770.0000, X=-10612.0000, Y=12441.0000, Z=-671.0000
+Calibration Status: 246
+Accelerometer: X=-6, Y=-116, Z=-959
+Quaternion: W=769.0000, X=-10641.0000, Y=12414.0000, Z=-720.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-112, Z=-960
+Quaternion: W=799.0000, X=-10667.0000, Y=12391.0000, Z=-698.0000
+Calibration Status: 246
+Accelerometer: X=-3, Y=-110, Z=-958
+Quaternion: W=792.0000, X=-10707.0000, Y=12354.0000, Z=-735.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-113, Z=-958
+Quaternion: W=768.0000, X=-10710.0000, Y=12353.0000, Z=-736.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-115, Z=-962
+Quaternion: W=756.0000, X=-10725.0000, Y=12333.0000, Z=-858.0000
+Calibration Status: 246
+Accelerometer: X=-5, Y=-117, Z=-959
+Quaternion: W=741.0000, X=-10725.0000, Y=12336.0000, Z=-820.0000
+Calibration Status: 246
+Accelerometer: X=-8, Y=-115, Z=-958
+Quaternion: W=721.0000, X=-10659.0000, Y=12395.0000, Z=-807.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-117, Z=-960
+Quaternion: W=720.0000, X=-10616.0000, Y=12436.0000, Z=-747.0000
+Calibration Status: 246
+Accelerometer: X=-8, Y=-119, Z=-960
+Quaternion: W=792.0000, X=-10576.0000, Y=12468.0000, Z=-698.0000
+Calibration Status: 246
+Accelerometer: X=-6, Y=-118, Z=-958
+Quaternion: W=785.0000, X=-10514.0000, Y=12521.0000, Z=-713.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-118, Z=-959
+Quaternion: W=777.0000, X=-10514.0000, Y=12516.0000, Z=-801.0000
+Calibration Status: 246
+Accelerometer: X=-4, Y=-118, Z=-959
+Quaternion: W=771.0000, X=-10543.0000, Y=12494.0000, Z=-751.0000
+Calibration Status: 246
+Accelerometer: X=-6, Y=-115, Z=-959
+Quaternion: W=760.0000, X=-10612.0000, Y=12441.0000, Z=-674.0000
+Calibration Status: 246
+Accelerometer: X=-6, Y=-117, Z=-961
+Quaternion: W=781.0000, X=-10626.0000, Y=12425.0000, Z=-726.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-117, Z=-962
+Quaternion: W=836.0000, X=-10634.0000, Y=12415.0000, Z=-726.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-118, Z=-963
+Quaternion: W=864.0000, X=-10625.0000, Y=12418.0000, Z=-768.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-116, Z=-959
+Quaternion: W=832.0000, X=-10648.0000, Y=12405.0000, Z=-692.0000
+Calibration Status: 246
+Accelerometer: X=-6, Y=-114, Z=-960
+Quaternion: W=879.0000, X=-10687.0000, Y=12366.0000, Z=-732.0000
+Calibration Status: 246
+Accelerometer: X=-6, Y=-118, Z=-957
+Quaternion: W=843.0000, X=-10727.0000, Y=12335.0000, Z=-714.0000
+Calibration Status: 246
+Accelerometer: X=-8, Y=-117, Z=-960
+Quaternion: W=864.0000, X=-10746.0000, Y=12317.0000, Z=-705.0000
+Calibration Status: 246
+Accelerometer: X=-6, Y=-117, Z=-954
+Quaternion: W=921.0000, X=-10749.0000, Y=12312.0000, Z=-677.0000
+Calibration Status: 246
+Accelerometer: X=-6, Y=-118, Z=-960
+Quaternion: W=782.0000, X=-10753.0000, Y=12321.0000, Z=-632.0000
+Calibration Status: 246
+Accelerometer: X=-8, Y=-116, Z=-960
+Quaternion: W=768.0000, X=-10791.0000, Y=12290.0000, Z=-601.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-116, Z=-960
+Quaternion: W=815.0000, X=-10788.0000, Y=12288.0000, Z=-641.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-119, Z=-963
+Quaternion: W=786.0000, X=-10741.0000, Y=12330.0000, Z=-643.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-120, Z=-961
+Quaternion: W=814.0000, X=-10738.0000, Y=12332.0000, Z=-620.0000
+Calibration Status: 246
+Accelerometer: X=-8, Y=-117, Z=-960
+Quaternion: W=763.0000, X=-10751.0000, Y=12322.0000, Z=-655.0000
+Calibration Status: 246
+Accelerometer: X=-9, Y=-118, Z=-961
+Quaternion: W=790.0000, X=-10732.0000, Y=12335.0000, Z=-687.0000
+Calibration Status: 246
+Accelerometer: X=-8, Y=-119, Z=-956
+Quaternion: W=810.0000, X=-10624.0000, Y=12429.0000, Z=-658.0000
+Calibration Status: 246
+Accelerometer: X=-4, Y=-117, Z=-955
+Quaternion: W=717.0000, X=-10643.0000, Y=12416.0000, Z=-696.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-117, Z=-960
+Quaternion: W=731.0000, X=-10612.0000, Y=12445.0000, Z=-634.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-118, Z=-958
+Quaternion: W=734.0000, X=-10593.0000, Y=12463.0000, Z=-605.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-119, Z=-961
+Quaternion: W=752.0000, X=-10670.0000, Y=12398.0000, Z=-539.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-117, Z=-958
+Quaternion: W=825.0000, X=-10626.0000, Y=12427.0000, Z=-643.0000
+Calibration Status: 246
+Accelerometer: X=-7, Y=-116, Z=-957
+Quaternion: W=817.0000, X=-10612.0000, Y=12439.0000, Z=-655.0000
