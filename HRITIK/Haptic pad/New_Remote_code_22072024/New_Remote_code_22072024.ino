@@ -42,7 +42,7 @@ void loop() {
 void handleJoystickMovement(int value, int &number, char axis, int velocity) {
   int prevNumber = number; // Store previous number value
 
-  float Delay = ((1.0 / velocity) * 1000);
+  float Delay = ((1.0 / velocity) * 1000);  // Time = (Displacement/velocity) * 1000(convert second into millisecond)
   
   // Update number based on joystick value
   if (value > 600 && value <= 1023) {
