@@ -1,0 +1,4 @@
+../BNO055/bno055.c:27:19:BNO055_WriteReg	1
+../BNO055/bno055.c:31:19:BNO055_ReadRegs	1
+../BNO055/bno055.c:35:19:BNO055_Init	4
+../BNO055/bno055.c:56:19:BNO055_ReadQuaternion	2

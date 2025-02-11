@@ -1,0 +1,4 @@
+../Loadcell/loadcell.c:23:6:microDelay	16	static
+../Loadcell/loadcell.c:31:9:getHX711	24	static
+../Loadcell/loadcell.c:65:5:weigh	32	static
+../Loadcell/loadcell.c:82:6:setTare	24	static
