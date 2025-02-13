@@ -1,0 +1,10 @@
+../VL6180X/VL6180X.c:6:6:begin	2
+../VL6180X/VL6180X.c:15:9:getDeviceID	2
+../VL6180X/VL6180X.c:35:6:init	2
+../VL6180X/VL6180X.c:84:10:read	5
+../VL6180X/VL6180X.c:125:6:write8bit	1
+../VL6180X/VL6180X.c:148:7:alsPoLLMeasurement	1
+../VL6180X/VL6180X.c:162:7:alsGetMeasurement	1
+../VL6180X/VL6180X.c:193:9:rangePollMeasurement	1
+../VL6180X/VL6180X.c:219:9:rangeGetMeasurement	1
+../VL6180X/VL6180X.c:225:9:getRangeResult	1
